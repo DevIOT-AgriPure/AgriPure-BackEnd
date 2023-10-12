@@ -1,6 +1,6 @@
 package com.deviot.agripurebackend.account.domain.entities;
-import com.deviot.agripurebackend.account.domain.valueObjects.email;
-import com.deviot.agripurebackend.account.domain.valueObjects.password;
+import com.deviot.agripurebackend.account.domain.valueObjects.Email;
+import com.deviot.agripurebackend.account.domain.valueObjects.Password;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,9 +8,7 @@ import lombok.Setter;
 //https://github.com/upc-pre-202302-si730-sw52/ACME.LearningPlatform.API
 import javax.persistence.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Table(name="accounts")
 public class account {
@@ -20,9 +18,30 @@ public class account {
 
     @Embedded
     @Column(nullable = false)
-    private email account_email;
+    private Email account_email;
 
     @Embedded
     @Column(nullable = false)
-    private password account_password;
+    private Password account_password;
+
+    public account(String email,String password){
+        account_email=new Email(email);
+        account_password=new Password(password);
+    }
+
+    public void changeEmail(String email){
+        account_email=new Email(email);
+    }
+
+    public void changePassword(String password){
+        account_password=new Password(password);
+    }
+
+    public String getEmail(){
+        return account_email.email();
+    }
+
+    public String getPassword(){
+        return account_password.password();
+    }
 }

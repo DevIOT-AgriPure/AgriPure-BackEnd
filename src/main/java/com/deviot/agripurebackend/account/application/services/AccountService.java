@@ -1,9 +1,16 @@
 package com.deviot.agripurebackend.account.application.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.deviot.agripurebackend.account.infrastructure.AccountRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AccountService {
-    @Autowired
+
+    private final AccountRepository accountRepository;
+
+
+    public AccountService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
 }

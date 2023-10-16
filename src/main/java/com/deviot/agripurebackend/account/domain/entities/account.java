@@ -1,4 +1,5 @@
 package com.deviot.agripurebackend.account.domain.entities;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -6,15 +7,15 @@ import javax.persistence.*;
 
 @Getter
 @Setter
-@Table(name="accounts")
+@Data
 public class account {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false)
     private String email;
-
-    @Column(nullable = false)
     private String password;
+
+    public account(Long id, String e, String p){
+        this.id=id;
+        this.email=e;
+        this.password=p;
+    }
 }

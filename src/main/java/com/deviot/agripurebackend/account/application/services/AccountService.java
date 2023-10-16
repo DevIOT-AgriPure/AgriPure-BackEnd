@@ -23,7 +23,7 @@ public class AccountService {
     }
 
     public account getAccount(CreateAccountCommand createAccountCommand){
-        Optional<account> present_account = this.accountRepository.findByEmailAndPassword(createAccountCommand.getEmail(), createAccount().getPassword());
+        Optional<account> present_account = this.accountRepository.findByEmailAndPassword(createAccountCommand.getEmail(), createAccountCommand.getPassword());
         if(present_account.isPresent()){
             return present_account.get();
         }

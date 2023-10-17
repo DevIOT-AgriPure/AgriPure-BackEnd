@@ -19,13 +19,13 @@ public class notification {
     private String body;
     private String importance;
 
-    public notification(Long id, int u, String c, String t, String b, String i){
+    public notification(Long id, int u, String c, String t, String b, String ii){
         this.id=id;
         this.userId=u;
         this.createAt=c;
         this.title=t;
         this.body=b;
-        this.importance=i;
+        this.importance=ii;
 
     }
 }

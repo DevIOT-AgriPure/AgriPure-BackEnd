@@ -1,10 +1,21 @@
 package com.deviot.agripurebackend.account.domain.repository;
 
+import com.deviot.agripurebackend.account.domain.commands.CreateAccountCommand;
 import com.deviot.agripurebackend.account.domain.entities.account;
-import org.springframework.data.jpa.repository.JpaRepository;
 
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 import java.util.Optional;
 
-public interface AccountRepository  extends JpaRepository<account,Long> {
-    Optional<account> findByEmailAndPassword(String email, String password);
+@Repository
+public interface AccountRepository {
+
+    List<account> findAll();
+
+
+    account save(CreateAccountCommand createAccountCommand);
+    Optional<account> findByEmailAndPassword(CreateAccountCommand createAccountCommand);
+
+    void deleteById(Long id);
 }

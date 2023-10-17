@@ -24,6 +24,6 @@ public interface AccountMapper {
     List<account> toAccounts(List<accountEntity> accountEntity);
 
     @InheritInverseConfiguration
-    accountEntity toProductEntity (account accountt);
+    accountEntity toAccountEntity (account accountt);
 
 }

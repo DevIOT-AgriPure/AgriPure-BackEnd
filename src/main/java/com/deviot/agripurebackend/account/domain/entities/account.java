@@ -2,13 +2,14 @@ package com.deviot.agripurebackend.account.domain.entities;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 
 @Getter
 @Setter
 @Data
 public class account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

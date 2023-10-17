@@ -18,7 +18,7 @@ public class Account {
     @Column(name = "password")
     private String password;
 
-    private Account(String email,String password){
+    public Account(String email,String password){
         this.email=email;
         this.password=password;
     }

@@ -1,6 +1,6 @@
 package com.deviot.agripurebackend.profile.domain.repository;
 
-import com.deviot.agripurebackend.profile.domain.commands.CreateAccountCommand;
+import com.deviot.agripurebackend.profile.domain.commands.CreateProfileCommand;
 import com.deviot.agripurebackend.profile.domain.entities.profile;
 
 import org.springframework.stereotype.Repository;
@@ -14,7 +14,9 @@ public interface ProfileRepository {
     List<profile> findAll();
 
 
-    profile save(CreateAccountCommand createAccountCommand);
-    Optional<profile> findByEmailAndPassword(CreateAccountCommand createAccountCommand);
+    profile save(CreateProfileCommand createProfileCommand);
+
+    Optional<profile> findByEmailAndPassword(CreateProfileCommand createProfilecommand);
 
     void deleteById(Long id);
+}

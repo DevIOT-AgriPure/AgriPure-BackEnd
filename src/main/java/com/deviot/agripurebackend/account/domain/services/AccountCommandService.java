@@ -2,9 +2,10 @@ package com.deviot.agripurebackend.account.domain.services;
 
 import com.deviot.agripurebackend.account.domain.model.commands.CreateAccountCommand;
 import com.deviot.agripurebackend.account.domain.model.commands.LogInCommand;
+import com.deviot.agripurebackend.account.infrastructure.dtos.AuthResponse;
 
 public interface AccountCommandService {
 
-    Long handle(CreateAccountCommand createAccountCommand);
-    Long handle(LogInCommand logInCommand);
+    AuthResponse handle(CreateAccountCommand createAccountCommand);
+    AuthResponse handle(LogInCommand logInCommand);
 }

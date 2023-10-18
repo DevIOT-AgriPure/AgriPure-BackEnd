@@ -31,8 +31,9 @@ public class AccountCommandService implements com.deviot.agripurebackend.account
         Account logAccount=this.accountRepository.findByEmail(logInCommand.email());
         if(logAccount!=null){
             if(Objects.equals(logAccount.getPassword(), logInCommand.password())){
-                return 1L;
+                return logAccount.getId();
             }
+
             return 0L;
         }
         else {

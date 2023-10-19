@@ -14,28 +14,25 @@ public class profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int userId;
-    private int suscripcionId;
+    private int suscriptionId;
     private String firstName;
     private String lastName;
     private String cellphone;
-    private String rol;
 
-    public profile(Long id, int u, int s, String f, String l, String c, String r){
+    public profile(Long id, int u, int s, String f, String l, String c){
         this.id=id;
         this.userId=u;
-        this.suscripcionId=s;
+        this.suscriptionId=s;
         this.firstName=f;
         this.lastName=l;
         this.cellphone=c;
-        this.rol=r;
     }
 
-    public profile (int u, int s, String f, String l, String c, String r){
+    public profile (int u, int s, String f, String l, String c){
         this.userId=u;
-        this.suscripcionId=s;
+        this.suscriptionId=s;
         this.firstName=f;
         this.lastName=l;
         this.cellphone=c;
-        this.rol=r;
     }
 }

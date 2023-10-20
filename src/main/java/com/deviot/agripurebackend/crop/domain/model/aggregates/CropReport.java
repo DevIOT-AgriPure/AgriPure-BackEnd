@@ -26,8 +26,10 @@ public class CropReport {
     @Column(name = "description")
     private String description;
 
-    @Column(name="image_url")
-    private String imageUrl;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name="image")
+    private byte[] image;
 
     @Column(name="crop_id")
     private Long cropId;

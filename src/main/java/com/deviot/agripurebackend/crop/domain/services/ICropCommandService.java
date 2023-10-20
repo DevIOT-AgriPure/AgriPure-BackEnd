@@ -7,10 +7,10 @@ import com.deviot.agripurebackend.crop.domain.model.commands.DeleteCropReportCom
 
 public interface ICropCommandService {
     String handle(CreateCropCommand createCropCommand);
-    String handle(AddCropReportCommand addCropReportCommand);
+
 
     String handle(DeleteCropCommand deleteCropCommand);
 
-    String handle(DeleteCropReportCommand deleteCropReportCommand);
+
 
 }

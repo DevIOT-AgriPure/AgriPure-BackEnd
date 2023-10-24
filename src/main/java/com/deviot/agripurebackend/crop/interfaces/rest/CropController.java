@@ -46,8 +46,8 @@ public class CropController {
         }
     }
     @DeleteMapping
-    public ResponseEntity<?> deleteCropById(Long cropId){
-        DeleteCropCommand deleteCropCommand=new DeleteCropCommand(cropId);
+    public ResponseEntity<?> deleteCropById(@RequestBody DeleteCropCommand deleteCropCommand){
+
         String message=this.cropCommandService.handle(deleteCropCommand);
         return ResponseEntity.ok(message);
     }

@@ -35,6 +35,8 @@ public class CropCommandService implements ICropCommandService {
 
     @Override
     public String handle(DeleteCropCommand deleteCropCommand) {
+
+
         Optional<Crop> crop=cropRepository.findById(deleteCropCommand.cropId());
         if(crop.isPresent()){
             cropRepository.deleteById(deleteCropCommand.cropId());

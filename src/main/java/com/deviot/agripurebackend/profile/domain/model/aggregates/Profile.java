@@ -35,6 +35,4 @@ public class Profile {
     @Column(name = "cellphone",nullable = false)
     private String cellphone;
 
-
-
 }

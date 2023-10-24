@@ -1,4 +1,4 @@
 package com.deviot.agripurebackend.profile.domain.model.commands;
 
-public class DeleteProfileCommand {
+public record DeleteProfileCommand(Long userId) {
 }

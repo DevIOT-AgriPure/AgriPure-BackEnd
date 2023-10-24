@@ -4,14 +4,14 @@ import lombok.Getter;
 
 @Getter
 public class CreateProfileCommand {
-    private int userId;
-    private int suscriptionId;
+    private Long userId;
+    private Long suscriptionId;
     private String firstName;
     private String lastName;
     private String cellphone;
     private String rol;
 
-    public CreateProfileCommand(int userId, int suscriptionId, String firstName, String lastName, String cellphone, String rol){
+    public CreateProfileCommand(Long userId, Long suscriptionId, String firstName, String lastName, String cellphone, String rol){
         this.userId=userId;
         this.suscriptionId=suscriptionId;
         this.firstName=firstName;

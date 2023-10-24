@@ -21,7 +21,7 @@ public interface ProfileCommandService extends IProfileCommandService {
     public String handle(CreateProfileCommand createProfileCommand) {
         Profile newProfile=Profile.builder()
                 .userId(createProfileCommand.userId())
-                .plantId(createProfileCommand.plantId())
+                .suscriptionId(createProfileCommand.suscriptionId())
                 .createdAt(new Date())
                 .updatedAt(new Date())
                 .build();

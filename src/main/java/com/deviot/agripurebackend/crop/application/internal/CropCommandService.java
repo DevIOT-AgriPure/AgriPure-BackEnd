@@ -16,7 +16,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class CropCommandService implements ICropCommandService {
-    CropRepository cropRepository;
+    private final CropRepository cropRepository;
     @Override
     public String handle(CreateCropCommand createCropCommand) {
         Crop newCrop=Crop.builder()

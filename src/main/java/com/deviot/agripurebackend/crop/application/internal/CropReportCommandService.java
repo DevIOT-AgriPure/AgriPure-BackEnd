@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CropReportCommandService implements ICropReportCommandService {
 
-    CropReportRepository cropReportRepository;
+    private final CropReportRepository cropReportRepository;
     @Override
     public String handle(AddCropReportCommand addCropReportCommand) {
         CropReport report=CropReport.builder()

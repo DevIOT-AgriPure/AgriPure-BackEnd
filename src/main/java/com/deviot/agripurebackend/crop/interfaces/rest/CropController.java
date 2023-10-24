@@ -21,7 +21,7 @@ public class CropController {
     private final CropQueryService cropQueryService;
 
     @PostMapping
-    public ResponseEntity<?> createCrop(CreateCropCommand createCropCommand){
+    public ResponseEntity<?> createCrop(@RequestBody CreateCropCommand createCropCommand){
         this.cropCommandService.handle(createCropCommand);
         return ResponseEntity.ok("Crop created!!!");
     }
@@ -51,5 +51,4 @@ public class CropController {
         String message=this.cropCommandService.handle(deleteCropCommand);
         return ResponseEntity.ok(message);
     }
-
 }

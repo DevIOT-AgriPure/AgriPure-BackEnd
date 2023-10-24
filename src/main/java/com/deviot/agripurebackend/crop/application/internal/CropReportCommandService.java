@@ -3,26 +3,25 @@ package com.deviot.agripurebackend.crop.application.internal;
 import com.deviot.agripurebackend.crop.domain.model.aggregates.CropReport;
 import com.deviot.agripurebackend.crop.domain.model.commands.AddCropReportCommand;
 import com.deviot.agripurebackend.crop.domain.model.commands.DeleteCropReportCommand;
-import com.deviot.agripurebackend.crop.domain.services.ICropRepositoryCommandService;
+import com.deviot.agripurebackend.crop.domain.services.ICropReportCommandService;
 import com.deviot.agripurebackend.crop.infrastructure.CropReportRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.Date;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class CropReportCommandService implements ICropRepositoryCommandService {
+public class CropReportCommandService implements ICropReportCommandService {
 
     CropReportRepository cropReportRepository;
     @Override
-    public String handle(AddCropReportCommand addCropReportCommand) throws IOException {
+    public String handle(AddCropReportCommand addCropReportCommand) {
         CropReport report=CropReport.builder()
                 .createdAt(new Date())
                 .description(addCropReportCommand.description())
-                .image(addCropReportCommand.image().getBytes())
+                .image(addCropReportCommand.image())
                 .cropId(addCropReportCommand.cropId())
                 .build();
         cropReportRepository.save(report);

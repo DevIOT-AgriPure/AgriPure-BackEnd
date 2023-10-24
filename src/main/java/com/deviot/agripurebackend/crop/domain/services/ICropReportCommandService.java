@@ -5,7 +5,7 @@ import com.deviot.agripurebackend.crop.domain.model.commands.DeleteCropReportCom
 
 import java.io.IOException;
 
-public interface ICropRepositoryCommandService {
+public interface ICropReportCommandService {
     String handle(AddCropReportCommand addCropReportCommand) throws IOException;
     String handle(DeleteCropReportCommand deleteCropReportCommand);
 }

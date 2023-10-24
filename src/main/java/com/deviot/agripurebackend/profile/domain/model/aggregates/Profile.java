@@ -1,19 +1,19 @@
 package com.deviot.agripurebackend.profile.domain.model.aggregates;
-import com.deviot.agripurebackend.profile.domain.model.enums.ProfileRol;
+
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.Date;
 
-import java.util.Collection;
-import java.util.List;
-
-@Getter
-@Setter
 @Entity
-@Builder
+@Table(name = "profiles")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "profiles", uniqueConstraints = {@UniqueConstraint(columnNames = {"email"})})
+@Data
+@Builder
 public class Profile {
 
     @Id
@@ -21,10 +21,10 @@ public class Profile {
     private Long id;
 
     @Column(name = "userId",nullable = false)
-    private int userId;
+    private Long userId;
 
     @Column(name = "suscriptionId",nullable = false)
-    private int suscritionId;
+    private Long suscritionId;
 
     @Column(name = "firstName",nullable = false)
     private String firstName;

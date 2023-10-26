@@ -6,7 +6,6 @@ import com.deviot.agripurebackend.notification.application.internal.QueryService
 import com.deviot.agripurebackend.notification.domain.model.aggregates.Notification;
 import com.deviot.agripurebackend.notification.domain.model.commands.CreateNotificationCommand;
 import com.deviot.agripurebackend.notification.domain.model.commands.DeleteNotificationCommand;
-import com.deviot.agripurebackend.notification.domain.model.commands.GetAllNotificationCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -3,7 +3,6 @@ package com.deviot.agripurebackend.notification.application.internal;
 import com.deviot.agripurebackend.notification.domain.model.aggregates.Notification;
 import com.deviot.agripurebackend.notification.domain.model.commands.CreateNotificationCommand;
 import com.deviot.agripurebackend.notification.domain.model.commands.DeleteNotificationCommand;
-import com.deviot.agripurebackend.notification.domain.model.commands.GetAllNotificationCommand;
 import com.deviot.agripurebackend.notification.domain.services.INotificationsCommandService;
 import com.deviot.agripurebackend.notification.infrastructure.NotificationRepository;
 import lombok.RequiredArgsConstructor;

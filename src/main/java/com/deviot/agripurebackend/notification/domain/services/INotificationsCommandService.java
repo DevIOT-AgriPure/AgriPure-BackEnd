@@ -3,7 +3,7 @@ package com.deviot.agripurebackend.notification.domain.services;
 import com.deviot.agripurebackend.notification.domain.model.aggregates.Notification;
 import com.deviot.agripurebackend.notification.domain.model.commands.CreateNotificationCommand;
 import com.deviot.agripurebackend.notification.domain.model.commands.DeleteNotificationCommand;
-import com.deviot.agripurebackend.notification.domain.model.commands.GetAllNotificationCommand;
+
 
 import java.util.List;
 

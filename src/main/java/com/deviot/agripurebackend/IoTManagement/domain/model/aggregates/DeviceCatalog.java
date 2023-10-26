@@ -1,11 +1,15 @@
 package com.deviot.agripurebackend.IoTManagement.domain.model.aggregates;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
+@Builder
 @Data
 @Entity
-@Table(name = "devices")
+@Table(name = "devices_catalog")
 public class DeviceCatalog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

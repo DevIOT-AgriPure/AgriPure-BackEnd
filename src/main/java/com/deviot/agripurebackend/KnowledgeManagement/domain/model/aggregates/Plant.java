@@ -37,7 +37,7 @@ public class Plant {
     private String distanceBetweenPlants;
 
     @Column(name="ideal_planting_depth")
-    private String dealPlantingDepth;
+    private String idealPlantingDepth;
 
     @Column(name = "fertilization_and_fumigation")
     private String fertilizationAndFumigation;

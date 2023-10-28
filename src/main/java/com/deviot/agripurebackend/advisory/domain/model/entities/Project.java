@@ -2,6 +2,7 @@ package com.deviot.agripurebackend.advisory.domain.model.entities;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
@@ -10,10 +11,11 @@ import java.util.Date;
 @RequiredArgsConstructor
 @Table(name = "projects")
 @Builder
+@Data
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long ind;
+    private Long id;
 
     @Column(name="farmer_id")
     private Long farmerId;

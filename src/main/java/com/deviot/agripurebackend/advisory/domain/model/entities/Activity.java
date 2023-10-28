@@ -2,10 +2,12 @@ package com.deviot.agripurebackend.advisory.domain.model.entities;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
 
+@Data
 @RequiredArgsConstructor
 @Entity
 @Table(name = "activities")

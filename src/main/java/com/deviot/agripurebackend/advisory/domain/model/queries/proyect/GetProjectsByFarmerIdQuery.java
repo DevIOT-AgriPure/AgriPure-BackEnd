@@ -1,4 +1,4 @@
 package com.deviot.agripurebackend.advisory.domain.model.queries.proyect;
 
-public class GetProyectByIdQuery {
+public record GetProjectsByFarmerIdQuery(Long farmerId) {
 }

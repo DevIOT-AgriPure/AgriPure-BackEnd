@@ -24,14 +24,23 @@ public class Notification implements Serializable {
     @Column(name = "user_id")
     private Long userId;
 
+    @Column(name = "specialist_id")
+    private Long specialistId;
+
     @Column(name = "created_at")
     private Date createAt;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "plant_id")
+    private Long plantId;
 
-    @Column(name = "body")
-    private String body;
+    @Column(name = "seen")
+    private Boolean seen;
+
+    @Column(name = "message")
+    private String message;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "importance")

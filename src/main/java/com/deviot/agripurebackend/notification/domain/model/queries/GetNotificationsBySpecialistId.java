@@ -1,4 +1,4 @@
 package com.deviot.agripurebackend.notification.domain.model.queries;
 
-public record GetNotificationsById(Long id) {
+public record GetNotificationsBySpecialistId(Long specialistId) {
 }

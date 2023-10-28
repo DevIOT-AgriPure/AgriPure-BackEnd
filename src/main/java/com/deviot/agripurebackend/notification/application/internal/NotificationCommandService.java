@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,9 +19,12 @@ public class NotificationCommandService implements INotificationsCommandService 
     public String handle(CreateNotificationCommand createNotificationCommand) {
         Notification newNotification = Notification.builder()
                 .userId(createNotificationCommand.userId())
+                .specialistId(createNotificationCommand.specialistId())
                 .importance(createNotificationCommand.importance())
-                .title(createNotificationCommand.title())
-                .body(createNotificationCommand.body())
+                .message(createNotificationCommand.message())
+                .imageUrl("https://s2.abcstatics.com/media/bienestar/2020/09/01/lechuga-kSlD--1248x698@abc.jpg")
+                .seen(false)
+                .plantId(createNotificationCommand.plantId())
                 .createAt(new Date())
                 .build();
         if (notificationRepository.save(newNotification)!=null){
@@ -40,14 +42,14 @@ public class NotificationCommandService implements INotificationsCommandService 
     @Override
     public String handle(DeleteNotificationCommand deleteNotificationCommand) {
 
-        List<Notification> notifications = notificationRepository.findNotificationsByUserId(deleteNotificationCommand.userId());
+        List<Notification> notifications = notificationRepository.findNotificationsByUserId(deleteNotificationCommand.id());
         if (!notifications.isEmpty()){
             for (Notification notification: notifications){
                 notificationRepository.delete(notification);
             }
-            return "Notification with id"+deleteNotificationCommand.userId()+"was deleted";
+            return "Notification with id"+deleteNotificationCommand.id()+"was deleted";
         }
-        return "Notification with id:"+ deleteNotificationCommand.userId()+"doesnt exists";
+        return "Notification with id:"+ deleteNotificationCommand.id()+"doesnt exists";
     }
 
     @Override

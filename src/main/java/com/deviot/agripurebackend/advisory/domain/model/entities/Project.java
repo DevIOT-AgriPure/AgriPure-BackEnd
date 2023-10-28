@@ -1,6 +1,7 @@
 package com.deviot.agripurebackend.advisory.domain.model.entities;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.Date;
 @Entity
 @RequiredArgsConstructor
 @Table(name = "projects")
+@Builder
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

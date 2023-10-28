@@ -1,13 +1,15 @@
 package com.deviot.agripurebackend.advisory.domain.model.entities;
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
-@RequiredArgsConstructor
+
 @Entity
 @Table(name = "messages")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Builder
 public class Message {
     @Id

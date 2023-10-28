@@ -7,6 +7,8 @@ import com.deviot.agripurebackend.crop.domain.model.commands.CreateCropCommand;
 import com.deviot.agripurebackend.crop.domain.model.commands.DeleteCropCommand;
 import com.deviot.agripurebackend.crop.domain.model.queries.GetCropByIdQuery;
 import com.deviot.agripurebackend.crop.domain.model.queries.GetCropsByFarmerIdQuery;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.deviot.agripurebackend.advisory.domain.Services;
+package com.deviot.agripurebackend.advisory.domain.Services.message;
 
 
 import com.deviot.agripurebackend.advisory.domain.model.commands.chat.CreateMessageCommand;

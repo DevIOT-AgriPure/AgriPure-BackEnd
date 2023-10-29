@@ -1,4 +1,4 @@
-package com.deviot.agripurebackend.advisory.domain.Services.queryService;
+package com.deviot.agripurebackend.advisory.domain.Services.message;
 
 import com.deviot.agripurebackend.advisory.domain.model.entities.Message;
 import com.deviot.agripurebackend.advisory.domain.model.queries.chat.GetMessageByContactIdQuery;

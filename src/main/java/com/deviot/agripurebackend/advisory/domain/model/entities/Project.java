@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 
 @Entity
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 @Table(name = "projects")
 @Builder
 @Data
@@ -36,10 +36,10 @@ public class Project {
     private String description;
 
     @Column(name="start_date")
-    private Date startDate;
+    private String startDate;
 
     @Column(name="end_date")
-    private Date endDate;
+    private String endDate;
 
 
 }

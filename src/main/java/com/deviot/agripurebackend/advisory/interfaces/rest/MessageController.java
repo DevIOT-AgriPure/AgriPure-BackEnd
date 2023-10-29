@@ -1,7 +1,7 @@
 package com.deviot.agripurebackend.advisory.interfaces.rest;
 
-import com.deviot.agripurebackend.advisory.application.internal.MessageCommandService;
-import com.deviot.agripurebackend.advisory.application.internal.QueryService.MessageQueryService;
+import com.deviot.agripurebackend.advisory.application.internal.message.MessageCommandService;
+import com.deviot.agripurebackend.advisory.application.internal.message.MessageQueryService;
 import com.deviot.agripurebackend.advisory.domain.model.commands.chat.CreateMessageCommand;
 import com.deviot.agripurebackend.advisory.domain.model.entities.Message;
 import com.deviot.agripurebackend.advisory.domain.model.queries.chat.GetMessageByContactIdQuery;

@@ -1,6 +1,6 @@
-package com.deviot.agripurebackend.advisory.application.internal;
+package com.deviot.agripurebackend.advisory.application.internal.message;
 
-import com.deviot.agripurebackend.advisory.domain.Services.IMessageCommandService;
+import com.deviot.agripurebackend.advisory.domain.Services.message.IMessageCommandService;
 import com.deviot.agripurebackend.advisory.domain.model.commands.chat.CreateMessageCommand;
 import com.deviot.agripurebackend.advisory.domain.model.entities.Message;
 import com.deviot.agripurebackend.advisory.infrastructure.MessageRepository;

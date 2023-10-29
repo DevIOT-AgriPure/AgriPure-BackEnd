@@ -45,6 +45,7 @@ public class ActivityCommandService implements IActivityCommandService {
         Optional<Activity> activity=activityRepository.findById(completeActivityCommand.id());
         if(activity.isPresent()){
             activity.get().setCompleted(true);
+            activityRepository.save(activity.get());
             return "Activity completed!!";
         }
         else{

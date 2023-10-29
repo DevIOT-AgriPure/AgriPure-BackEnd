@@ -1,16 +1,15 @@
 package com.deviot.agripurebackend.advisory.domain.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
 @Data
-//@RequiredArgsConstructor
 @Entity
 @Table(name = "activities")
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Activity {
     @Id
@@ -24,7 +23,7 @@ public class Activity {
     private String title;
 
     @Column(name="date")
-    private Date date;
+    private String date;
 
     @Column(name = "completed")
     private boolean completed;

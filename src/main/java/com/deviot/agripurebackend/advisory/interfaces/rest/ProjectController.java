@@ -9,7 +9,7 @@ import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsByFarmerIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsBySpecialistIdQuery;
-import jakarta.annotation.security.PermitAll;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +22,7 @@ public class ProjectController {
     private final ProjectCommandService projectCommandService;
     private final ProjectQueryService projectQueryService;
 
-    @PermitAll
+
     @PostMapping
     public ResponseEntity<?> createProject(@RequestBody CreateProjectCommand createProjectCommand){
         this.projectCommandService.handle(createProjectCommand);
@@ -72,9 +72,10 @@ public class ProjectController {
         String message=this.projectCommandService.handle(startProjectCommand);
         return ResponseEntity.ok(message);
     }
-    @PermitAll
-    @DeleteMapping
-    public ResponseEntity<?> deleteProjectById(@RequestBody DeleteProjectCommand deleteProjectCommand){
+
+    @DeleteMapping(("/deleteProjectById/{projectId}"))
+    public ResponseEntity<?> deleteProjectById(@PathVariable("projectId") Long projectId){
+        DeleteProjectCommand deleteProjectCommand=new DeleteProjectCommand(projectId);
         String message=this.projectCommandService.handle(deleteProjectCommand);
         return ResponseEntity.ok(message);
     }

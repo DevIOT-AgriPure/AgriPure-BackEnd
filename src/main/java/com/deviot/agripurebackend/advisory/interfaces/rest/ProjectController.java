@@ -66,8 +66,9 @@ public class ProjectController {
         }
     }
 
-    @PutMapping
-    public ResponseEntity<?> startProjectById(@RequestBody StartProjectCommand startProjectCommand){
+    @PutMapping("/startProject/{projectId}")
+    public ResponseEntity<?> startProjectById(@PathVariable("projectId") Long projectId){
+        StartProjectCommand startProjectCommand=new StartProjectCommand(projectId);
         String message=this.projectCommandService.handle(startProjectCommand);
         return ResponseEntity.ok(message);
     }

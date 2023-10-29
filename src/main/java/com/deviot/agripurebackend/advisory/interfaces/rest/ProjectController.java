@@ -3,6 +3,8 @@ package com.deviot.agripurebackend.advisory.interfaces.rest;
 import com.deviot.agripurebackend.advisory.application.internal.project.ProjectCommandService;
 import com.deviot.agripurebackend.advisory.application.internal.project.ProjectQueryService;
 import com.deviot.agripurebackend.advisory.domain.model.commands.proyect.CreateProjectCommand;
+import com.deviot.agripurebackend.advisory.domain.model.commands.proyect.DeleteProjectCommand;
+import com.deviot.agripurebackend.advisory.domain.model.commands.proyect.StartProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsByFarmerIdQuery;
@@ -59,5 +61,16 @@ public class ProjectController {
         else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PutMapping
+    public ResponseEntity<?> startProjectById(@RequestBody StartProjectCommand startProjectCommand){
+        String message=this.projectCommandService.handle(startProjectCommand);
+        return ResponseEntity.ok(message);
+    }
+    @DeleteMapping
+    public ResponseEntity<?> deleteProjectById(@RequestBody DeleteProjectCommand deleteProjectCommand){
+        String message=this.projectCommandService.handle(deleteProjectCommand);
+        return ResponseEntity.ok(message);
     }
 }

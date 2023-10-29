@@ -1,15 +1,14 @@
 package com.deviot.agripurebackend.advisory.domain.model.entities;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
 @Entity
-//@RequiredArgsConstructor
 @Table(name = "projects")
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Data
 public class Project {

@@ -1,9 +1,9 @@
 package com.deviot.agripurebackend.advisory.application.internal.project;
 
 import com.deviot.agripurebackend.advisory.domain.Services.project.IProyectCommandService;
-import com.deviot.agripurebackend.advisory.domain.model.commands.proyect.CreateProjectCommand;
-import com.deviot.agripurebackend.advisory.domain.model.commands.proyect.DeleteProjectCommand;
-import com.deviot.agripurebackend.advisory.domain.model.commands.proyect.StartProjectCommand;
+import com.deviot.agripurebackend.advisory.domain.model.commands.project.CreateProjectCommand;
+import com.deviot.agripurebackend.advisory.domain.model.commands.project.DeleteProjectCommand;
+import com.deviot.agripurebackend.advisory.domain.model.commands.project.StartProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
 import com.deviot.agripurebackend.advisory.infrastructure.ProjectRepository;
 import lombok.RequiredArgsConstructor;

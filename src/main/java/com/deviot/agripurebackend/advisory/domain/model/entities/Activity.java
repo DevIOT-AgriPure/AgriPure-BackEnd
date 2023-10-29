@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import java.util.Date;
 
 @Data
-@RequiredArgsConstructor
 @Entity
 @Table(name = "activities")
 @Builder

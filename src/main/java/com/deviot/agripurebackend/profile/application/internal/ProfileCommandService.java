@@ -8,28 +8,25 @@ import com.deviot.agripurebackend.profile.infrastructure.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
-
-import javax.management.Notification;
 
 @Service
 @RequiredArgsConstructor
-public interface ProfileCommandService extends IProfileCommandService {
-
+public class ProfileCommandService implements IProfileCommandService {
     private final ProfileRepository profileRepository;
     @Override
     public String handle(CreateProfileCommand createProfileCommand) {
         Profile newProfile=Profile.builder()
                 .userId(createProfileCommand.userId())
-                .suscriptionId(createProfileCommand.suscriptionId())
-                .createdAt(new Date())
-                .updatedAt(new Date())
+                .suscritionId(createProfileCommand.suscriptionId())
+                .firstName(createProfileCommand.firstName())
+                .lastName(createProfileCommand.lastName())
+                .cellphone(createProfileCommand.cellphone())
                 .build();
         if(profileRepository.save(newProfile)!=null){
-            return "CROP REGISTERED!!!";
+            return "PROFILE REGISTERED!!!";
         }
-        return "CAN'T REGISTER YOUR CROP";
+        return "CAN'T REGISTER PROFILE";
     }
     @Override
     public List<Profile> handle() {
@@ -39,14 +36,14 @@ public interface ProfileCommandService extends IProfileCommandService {
     @Override
     public String handle(DeleteProfileCommand deleteProfileCommand) {
 
-        List<Profile> profiles = profileRepository.findProfileByUserId(deleteProfileCommand.id());
+        List<Profile> profiles = profileRepository.findProfileByUserId(deleteProfileCommand.userId());
         if (!profiles.isEmpty()){
             for (Profile profile: profiles){
                 profileRepository.delete(profile);
             }
-            return "Profile with id"+deleteProfileCommand.id()+"was deleted";
+            return "Profile with id"+deleteProfileCommand.userId()+"was deleted";
         }
-        return "Profile with id:"+ deleteProfileCommand.id()+"doesnt exists";
+        return "Profile with id:"+ deleteProfileCommand.userId() +"doesnt exists";
     }
 
     @Override

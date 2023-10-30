@@ -1,6 +1,7 @@
 package com.deviot.agripurebackend.profile.application.internal;
 import com.deviot.agripurebackend.profile.domain.model.aggregates.Profile;
 import com.deviot.agripurebackend.profile.domain.model.commands.CreateProfileCommand;
+import com.deviot.agripurebackend.profile.domain.model.commands.DeleteProfileCommand;
 import com.deviot.agripurebackend.profile.domain.model.commands.UpdateProfileCommand;
 import com.deviot.agripurebackend.profile.domain.service.IProfileCommandService;
 import com.deviot.agripurebackend.profile.infrastructure.ProfileRepository;
@@ -48,5 +49,13 @@ public class ProfileCommandService implements IProfileCommandService {
     }
 
     @Override
-    public 
+    public String handle(DeleteProfileCommand deleteProfileCommand){
+        Optional<Profile> profile = Optional.ofNullable(profileRepository.findProfileByAccountId(deleteProfileCommand.accountId()));
+        if(profile.isPresent()){
+            profileRepository.deleteById(profile.get().getId());
+            return "Profile with Id "+deleteProfileCommand.accountId()+" was deleted";
+        }else {
+            return "Profile with Id: "+deleteProfileCommand.accountId()+" doesn´t exist";
+        }
+    }
 }

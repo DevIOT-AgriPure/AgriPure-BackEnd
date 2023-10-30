@@ -2,7 +2,7 @@ package com.deviot.agripurebackend.account.application.internal.QueryService;
 
 import com.deviot.agripurebackend.account.domain.model.aggregates.Account;
 import com.deviot.agripurebackend.account.domain.model.queries.GetEmailAndTypeByAccountIdQuery;
-import com.deviot.agripurebackend.account.domain.model.queries.GetFarmersQuery;
+import com.deviot.agripurebackend.account.domain.model.queries.GetSpecialistsQuery;
 import com.deviot.agripurebackend.account.domain.services.queryService.IAccountQueryService;
 import com.deviot.agripurebackend.account.infrastructure.repositories.AccountRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,8 +29,8 @@ public class AccountQueryService implements IAccountQueryService {
     }
 
     @Override
-    public List<Account> handle(GetFarmersQuery getFarmersQuery){
-        Optional<List<Account>> accounts=accountRepository.findAccountsByRol(getFarmersQuery.type());
+    public List<Account> handle(GetSpecialistsQuery getSpecialistsQuery){
+        Optional<List<Account>> accounts=accountRepository.findAccountsByRol(getSpecialistsQuery.type());
         if (accounts.isPresent()){
             return accounts.get();
         }else {

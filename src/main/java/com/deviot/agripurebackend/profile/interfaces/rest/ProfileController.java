@@ -3,7 +3,7 @@ import com.deviot.agripurebackend.account.application.internal.QueryService.Acco
 import com.deviot.agripurebackend.account.domain.model.aggregates.Account;
 import com.deviot.agripurebackend.account.domain.model.enums.AccountRol;
 import com.deviot.agripurebackend.account.domain.model.queries.GetEmailAndTypeByAccountIdQuery;
-import com.deviot.agripurebackend.account.domain.model.queries.GetFarmersQuery;
+import com.deviot.agripurebackend.account.domain.model.queries.GetSpecialistsQuery;
 import com.deviot.agripurebackend.profile.application.internal.ProfileCommandService;
 import com.deviot.agripurebackend.profile.application.internal.QueryService.ProfileQueryService;
 import com.deviot.agripurebackend.profile.domain.model.aggregates.Profile;
@@ -58,10 +58,10 @@ public class ProfileController {
         }
     }
 
-    @GetMapping("/getFarmers")
-    public ResponseEntity<?>getAllProfilesByFarmerType(){
-        GetFarmersQuery getFarmersQuery=new GetFarmersQuery(AccountRol.FARMER);
-        List<Account> accounts=this.accountQueryService.handle(getFarmersQuery);
+    @GetMapping("/getSpecialists")
+    public ResponseEntity<?>getAllProfilesBySpecialistType(){
+        GetSpecialistsQuery getSpecialistsQuery =new GetSpecialistsQuery(AccountRol.SPECIALIST);
+        List<Account> accounts=this.accountQueryService.handle(getSpecialistsQuery);
         if (accounts != null) {
             List<User> users = new ArrayList<>();
 

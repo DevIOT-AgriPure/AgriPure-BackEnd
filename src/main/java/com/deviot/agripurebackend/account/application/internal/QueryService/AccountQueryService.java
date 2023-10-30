@@ -1,6 +1,7 @@
 package com.deviot.agripurebackend.account.application.internal.QueryService;
 
 import com.deviot.agripurebackend.account.domain.model.aggregates.Account;
+import com.deviot.agripurebackend.account.domain.model.queries.GetAccountByEmailQuery;
 import com.deviot.agripurebackend.account.domain.model.queries.GetEmailAndTypeByAccountIdQuery;
 import com.deviot.agripurebackend.account.domain.model.queries.GetSpecialistsQuery;
 import com.deviot.agripurebackend.account.domain.services.queryService.IAccountQueryService;
@@ -24,6 +25,15 @@ public class AccountQueryService implements IAccountQueryService {
             return account.get();
         }
         else {
+            return null;
+        }
+    }
+    @Override
+    public Account handle(GetAccountByEmailQuery getAccountByEmailQuery){
+        Optional<Account> account= accountRepository.findByEmail(getAccountByEmailQuery.email());
+        if (account.isPresent()){
+            return account.get();
+        }else {
             return null;
         }
     }

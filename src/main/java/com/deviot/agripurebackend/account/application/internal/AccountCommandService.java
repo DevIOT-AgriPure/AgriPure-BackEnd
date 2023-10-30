@@ -26,10 +26,15 @@ public class AccountCommandService implements com.deviot.agripurebackend.account
 
     @Override
     public AuthResponse handle(CreateAccountCommand createAccountCommand) {
-        Account account=Account.builder().email(createAccountCommand.email()).password(passwordEncoder.encode(createAccountCommand.password()) ).rol(AccountRol.FARMER).build();
+        Account account=Account.builder()
+                .email(createAccountCommand.email())
+                .password(passwordEncoder.encode(createAccountCommand.password()) )
+                .rol(AccountRol.valueOf(createAccountCommand.type()))
+                .build();
         this.accountRepository.save(account);
         return AuthResponse.builder().token(jwtService.getToken(account)).build();
     }
+
 
     @Override
     public AuthResponse handle(LogInCommand logInCommand) {

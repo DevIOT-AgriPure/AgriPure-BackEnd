@@ -1,6 +1,8 @@
 package com.deviot.agripurebackend.profile.interfaces.rest;
+import com.deviot.agripurebackend.account.application.internal.AccountCommandService;
 import com.deviot.agripurebackend.account.application.internal.QueryService.AccountQueryService;
 import com.deviot.agripurebackend.account.domain.model.aggregates.Account;
+import com.deviot.agripurebackend.account.domain.model.commands.DeleteAccountCommand;
 import com.deviot.agripurebackend.account.domain.model.enums.AccountRol;
 import com.deviot.agripurebackend.account.domain.model.queries.GetEmailAndTypeByAccountIdQuery;
 import com.deviot.agripurebackend.account.domain.model.queries.GetSpecialistsQuery;
@@ -26,6 +28,8 @@ public class ProfileController {
     private final ProfileCommandService profileCommandService;
     private final ProfileQueryService profileQueryService;
     private final AccountQueryService accountQueryService;
+
+    private final AccountCommandService accountCommandService;
 
     @PostMapping
     public ResponseEntity<?> createProfile(@RequestBody CreateProfileCommand createProfileCommand){
@@ -101,7 +105,9 @@ public class ProfileController {
     @DeleteMapping("/deleteProfile/{accountId}")
     public ResponseEntity<?> deleteProfileByAccountId(@PathVariable("accountId")Long accountId){
         DeleteProfileCommand deleteProfileCommand=new DeleteProfileCommand(accountId);
-        String message=this.profileCommandService.handle(deleteProfileCommand);
-        return ResponseEntity.ok(message);
+        DeleteAccountCommand deleteAccountCommand=new DeleteAccountCommand(accountId);
+        String profileMessage=this.profileCommandService.handle(deleteProfileCommand);
+        String accountMessage=this.accountCommandService.handle(deleteAccountCommand);
+        return ResponseEntity.ok(profileMessage+accountMessage);
     }
 }

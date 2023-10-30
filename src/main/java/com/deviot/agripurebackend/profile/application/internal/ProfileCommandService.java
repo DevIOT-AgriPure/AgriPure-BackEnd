@@ -3,17 +3,18 @@ package com.deviot.agripurebackend.profile.application.internal;
 import com.deviot.agripurebackend.profile.domain.model.aggregates.Profile;
 import com.deviot.agripurebackend.profile.domain.model.commands.CreateProfileCommand;
 import com.deviot.agripurebackend.profile.domain.model.commands.DeleteProfileCommand;
-import com.deviot.agripurebackend.profile.infrastructure.ProfileRepository;
 import com.deviot.agripurebackend.profile.domain.services.IProfileCommandService;
+import com.deviot.agripurebackend.profile.infrastructure.ProfileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Optional;
+import java.util.List;
+
+import javax.management.Notification;
 
 @Service
 @RequiredArgsConstructor
-
 public interface ProfileCommandService extends IProfileCommandService {
 
     private final ProfileRepository profileRepository;
@@ -31,14 +32,31 @@ public interface ProfileCommandService extends IProfileCommandService {
         return "CAN'T REGISTER YOUR CROP";
     }
     @Override
-    public String handle(DeleteProfileCommand deleteProfileCommand) {
-        Optional<Profile> profile=ProfileRepository.findProfileByUserId(deleteProfileCommand.userId());
-        if(profile.isPresent()){
-            profileRepository.deleteById(deleteProfileCommand.userId());
-            return "User with Id "+deleteProfileCommand.userId()+" was deleted";
-        }
-        return " User with Id: "+deleteProfileCommand.userId()+" doesn´t exist";
+    public List<Profile> handle() {
+        return profileRepository.findAll();
+    }
 
+    @Override
+    public String handle(DeleteProfileCommand deleteProfileCommand) {
+
+        List<Profile> profiles = profileRepository.findProfileByUserId(deleteProfileCommand.id());
+        if (!profiles.isEmpty()){
+            for (Profile profile: profiles){
+                profileRepository.delete(profile);
+            }
+            return "Profile with id"+deleteProfileCommand.id()+"was deleted";
+        }
+        return "Profile with id:"+ deleteProfileCommand.id()+"doesnt exists";
+    }
+
+    @Override
+    public void deleteProfileByUserId(Long userId) {
+        List<Profile> profiles = profileRepository.findProfileByUserId(userId);
+        if (!profiles.isEmpty()){
+            for (Profile profile: profiles){
+                profileRepository.delete(profile);
+            }
+        }
     }
 
 }

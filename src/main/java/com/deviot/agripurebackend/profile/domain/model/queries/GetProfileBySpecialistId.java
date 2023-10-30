@@ -1,4 +1,4 @@
 package com.deviot.agripurebackend.profile.domain.model.queries;
 
-public class getProfileByIdQuery {
+public record GetProfileBySpecialistId(Long specialistId) {
 }

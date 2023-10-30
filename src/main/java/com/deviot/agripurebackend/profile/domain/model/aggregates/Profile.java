@@ -1,19 +1,20 @@
 package com.deviot.agripurebackend.profile.domain.model.aggregates;
 
+import com.deviot.agripurebackend.profile.domain.model.enums.ProfileRole;
+import lombok.*;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
+@Getter
+@Setter
+@Data
+@Builder
 @Entity
 @Table(name = "profiles")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Builder
 public class Profile {
 
     @Id
@@ -34,5 +35,9 @@ public class Profile {
 
     @Column(name = "cellphone",nullable = false)
     private String cellphone;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private ProfileRole importance;
 
 }

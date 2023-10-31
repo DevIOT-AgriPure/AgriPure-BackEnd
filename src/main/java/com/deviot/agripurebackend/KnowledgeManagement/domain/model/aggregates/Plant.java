@@ -1,13 +1,12 @@
 package com.deviot.agripurebackend.KnowledgeManagement.domain.model.aggregates;
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Data
 @Builder
-@RequiredArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "plants")
 public class Plant {

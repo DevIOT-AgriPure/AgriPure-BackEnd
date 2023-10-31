@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Table(name = "profiles")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Profile {
+public class Profile implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +23,7 @@ public class Profile {
     @Column(name = "userId",nullable = false)
     private Long userId;
 
-    @Column(name = "suscriptionId",nullable = false)
+    @Column(name = "suscritionId",nullable = false)
     private Long suscritionId;
 
     @Column(name = "firstName",nullable = false)

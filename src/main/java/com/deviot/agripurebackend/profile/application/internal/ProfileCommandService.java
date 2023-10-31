@@ -14,11 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProfileCommandService implements IProfileCommandService {
     private final ProfileRepository profileRepository;
+
     @Override
     public String handle(CreateProfileCommand createProfileCommand) {
         Profile newProfile=Profile.builder()
                 .userId(createProfileCommand.userId())
-                .suscritionId(createProfileCommand.suscriptionId())
+                .suscritionId(createProfileCommand.suscritionId())
                 .firstName(createProfileCommand.firstName())
                 .lastName(createProfileCommand.lastName())
                 .cellphone(createProfileCommand.cellphone())

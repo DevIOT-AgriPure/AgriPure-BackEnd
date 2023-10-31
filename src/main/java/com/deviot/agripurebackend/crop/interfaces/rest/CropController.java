@@ -36,7 +36,7 @@ public class CropController {
         return ResponseEntity.ok(crops);
     }
 
-    @GetMapping("/{farmerId}/{cropId}")
+    @GetMapping("/getCrop/{cropId}")
     public ResponseEntity<?> getCropById(@PathVariable("cropId") Long cropId){
         GetCropByIdQuery getCropByIdQuery=new GetCropByIdQuery(cropId);
         Crop crop= this.cropQueryService.handle(getCropByIdQuery);

@@ -28,7 +28,7 @@ public class CropReportController {
         return ResponseEntity.ok("Crop report created!!");
     }
 
-    @GetMapping("/{cropId}/{cropReportId}")
+    @GetMapping("/getCropReport/{cropReportId}")
     public ResponseEntity<?> getCropReportById(@PathVariable("cropReportId") Long cropReportId){
         GetCropReportByIdQuery getCropReportByIdQuery=new GetCropReportByIdQuery(cropReportId);
 

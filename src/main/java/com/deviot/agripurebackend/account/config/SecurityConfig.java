@@ -35,7 +35,15 @@ public class SecurityConfig {
                                 ,"/webjars/**"
                                 ,"/swagger-ui/**"
                                 ,"/swagger-ui.html"
-                                ,"/api/v1/profiles/**")
+                                ,"/api/v1/profiles/**"
+                                ,"/api/v1/notifications/**"
+                                ,"api/v1/plant/**"
+                                ,"/api/v1/crops/**"
+                                ,"api/v1/CropReports/**"
+                                ,"/api/v1/activities/**"
+                                ,"/api/v1/contacts/**"
+                                ,"/api/v1/messages/**"
+                                ,"/api/v1/projects/**")
                                 .permitAll()
                                 .anyRequest().authenticated()//sdre
                         )

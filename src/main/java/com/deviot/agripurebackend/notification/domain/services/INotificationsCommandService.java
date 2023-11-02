@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface INotificationsCommandService {
     String handle(CreateNotificationCommand createNotificationCommand);
-    List<Notification> handle();
     String handle(DeleteNotificationCommand deleteNotificationCommand);
 
-    void  deleteNotificationsByUserId(Long userId);
 }

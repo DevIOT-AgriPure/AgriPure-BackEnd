@@ -21,30 +21,33 @@ public class Notification implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private Long userId;
-
-    @Column(name = "specialist_id")
-    private Long specialistId;
-
-    @Column(name = "created_at")
-    private Date createAt;
-
-    @Column(name = "plant_id")
-    private Long plantId;
-
-    @Column(name = "seen")
-    private Boolean seen;
-
     @Column(name = "message")
     private String message;
 
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "importance")
-    private NotificationImportance importance;
+    @Column(name = "notification_type")
+    private String notificationType;
+
+    @Column(name = "date")
+    private String date;
+
+    @Column(name = "to_account_id")
+    private Long toAccountId;
+
+    @Column(name = "plant_id")
+    private Long plantId;
+
+    @Column(name = "from_account_id")
+    private Long fromAccountId;
+
+    @Column(name = "seen")
+    private Boolean seen;
+
+
+
+
 
 }
 

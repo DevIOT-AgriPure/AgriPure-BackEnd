@@ -6,8 +6,7 @@ import com.deviot.agripurebackend.notification.application.internal.QueryService
 import com.deviot.agripurebackend.notification.domain.model.aggregates.Notification;
 import com.deviot.agripurebackend.notification.domain.model.commands.CreateNotificationCommand;
 import com.deviot.agripurebackend.notification.domain.model.commands.DeleteNotificationCommand;
-import com.deviot.agripurebackend.notification.domain.model.queries.GetNotificationsBySpecialistId;
-import com.deviot.agripurebackend.notification.domain.model.queries.GetNotificationsByUserId;
+import com.deviot.agripurebackend.notification.domain.model.queries.GetNotificationsByToAccountId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,24 +28,17 @@ public class NotificationController {
         return ResponseEntity.ok("Notification created!!");
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteNotification(@RequestBody DeleteNotificationCommand deleteNotificationCommand){
+    @DeleteMapping("/deleteNotificationById/{id}")
+    public ResponseEntity<?> deleteNotificationById(@PathVariable("id") Long id){
+        DeleteNotificationCommand deleteNotificationCommand=new DeleteNotificationCommand(id);
         this.notificationCommandService.handle(deleteNotificationCommand);
         return ResponseEntity.ok("Notification deleted");
     }
 
-    @GetMapping("/specialist/{specialistId}")
-    public ResponseEntity<?> getNotificationsBySpecialistId(@PathVariable("specialistId") Long specialistId){
-        GetNotificationsBySpecialistId getNotificationsBySpecialistId = new GetNotificationsBySpecialistId(specialistId);
-        List<Notification> notifications = this.notificationQueryService.handle(getNotificationsBySpecialistId);
-        return ResponseEntity.ok(notifications);
-
-    }
-
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<?> getNotificationsByUserId(@PathVariable("userId") Long userId){
-        GetNotificationsByUserId getNotificationsByUserId = new GetNotificationsByUserId(userId);
-        List<Notification> notifications = this.notificationQueryService.handle(getNotificationsByUserId);
+    @GetMapping("/getByToAccountId/{toAccountId}")
+    public ResponseEntity<?> getNotificationsByToAccountId(@PathVariable("toAccountId") Long toAccountId){
+        GetNotificationsByToAccountId getNotificationsByToAccountId=new GetNotificationsByToAccountId(toAccountId);
+        List<Notification> notifications = this.notificationQueryService.handle(getNotificationsByToAccountId);
         return ResponseEntity.ok(notifications);
 
     }

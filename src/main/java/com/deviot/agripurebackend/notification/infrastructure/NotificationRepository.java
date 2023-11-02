@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
-    List<Notification> findNotificationsByUserId(Long userId);
+    List<Notification> findNotificationByToAccountId(Long toAccountId);
 
-    List<Notification> findNotificationBySpecialistId(Long specialistId);
 }

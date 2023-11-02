@@ -9,11 +9,16 @@ import com.deviot.agripurebackend.account.domain.model.queries.GetEmailAndTypeBy
 import com.deviot.agripurebackend.account.domain.model.queries.GetSpecialistsQuery;
 import com.deviot.agripurebackend.profile.application.internal.ProfileCommandService;
 import com.deviot.agripurebackend.profile.application.internal.QueryService.ProfileQueryService;
+import com.deviot.agripurebackend.profile.application.internal.QueryService.SpecialistQueryService;
+import com.deviot.agripurebackend.profile.application.internal.SpecialistCommandService;
 import com.deviot.agripurebackend.profile.domain.model.aggregates.Profile;
+import com.deviot.agripurebackend.profile.domain.model.aggregates.Specialist;
 import com.deviot.agripurebackend.profile.domain.model.commands.CreateProfileCommand;
 import com.deviot.agripurebackend.profile.domain.model.commands.DeleteProfileCommand;
 import com.deviot.agripurebackend.profile.domain.model.commands.UpdateProfileCommand;
+import com.deviot.agripurebackend.profile.domain.model.commands.specialist.DeleteSpecialistCommand;
 import com.deviot.agripurebackend.profile.domain.model.queries.GetProfileByAccountIdQuery;
+import com.deviot.agripurebackend.profile.domain.model.queries.specialist.GetSpecialistByAccountIdQuery;
 import com.deviot.agripurebackend.profile.interfaces.rest.dto.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +34,8 @@ public class ProfileController {
     private final ProfileCommandService profileCommandService;
     private final ProfileQueryService profileQueryService;
     private final AccountQueryService accountQueryService;
-
+    private final SpecialistQueryService specialistQueryService;
+    private final SpecialistCommandService specialistCommandService;
     private final AccountCommandService accountCommandService;
 
     @PostMapping
@@ -89,6 +95,17 @@ public class ProfileController {
         }
     }
 
+    @GetMapping("/getSpecialistInfoByAccountId/{accountId}")
+    public ResponseEntity<?> getSpecialistInfoByAccountId(@PathVariable("accountId")Long accountId){
+        GetSpecialistByAccountIdQuery getSpecialistByAccountIdQuery=new GetSpecialistByAccountIdQuery(accountId);
+        Specialist specialist=this.specialistQueryService.handle(getSpecialistByAccountIdQuery);
+        if (specialist!=null ){
+            return ResponseEntity.ok(specialist);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @GetMapping("/getSpecialists")
     public ResponseEntity<?>getAllProfilesBySpecialistType(){
         GetSpecialistsQuery getSpecialistsQuery =new GetSpecialistsQuery(AccountRol.SPECIALIST);
@@ -131,6 +148,15 @@ public class ProfileController {
 
     @DeleteMapping("/deleteProfile/{accountId}")
     public ResponseEntity<?> deleteProfileByAccountId(@PathVariable("accountId")Long accountId){
+
+        GetProfileByAccountIdQuery getProfileByAccountIdQuery=new GetProfileByAccountIdQuery(accountId);
+
+        Profile profile=this.profileQueryService.handle(getProfileByAccountIdQuery);
+        if(!profile.getClass().toString().equals("SPECIALIST")){
+            DeleteSpecialistCommand deleteSpecialistCommand=new DeleteSpecialistCommand(accountId);
+            this.specialistCommandService.handle(deleteSpecialistCommand);
+        }
+
         DeleteProfileCommand deleteProfileCommand=new DeleteProfileCommand(accountId);
         DeleteAccountCommand deleteAccountCommand=new DeleteAccountCommand(accountId);
         String profileMessage=this.profileCommandService.handle(deleteProfileCommand);

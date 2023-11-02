@@ -19,7 +19,7 @@ public class ProjectCommandService implements IProyectCommandService {
     public String handle(CreateProjectCommand createProjectCommand) {
         Project newProject=Project.builder().farmerId(createProjectCommand.farmerId())
                 .specialistId(createProjectCommand.specialistId())
-                .isProjectStarted(false)
+                .isProjectStarted(createProjectCommand.isStarted())
                 .cropId(createProjectCommand.cropId())
                 .name(createProjectCommand.name())
                 .description(createProjectCommand.description())

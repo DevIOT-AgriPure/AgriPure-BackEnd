@@ -26,7 +26,7 @@ public class NotificationCommandService implements INotificationsCommandService 
                 .toAccountId(createNotificationCommand.toAccountId())
                 .plantId(createNotificationCommand.plantId())
                 .fromAccountId(createNotificationCommand.fromAccountId())
-                .seen(createNotificationCommand.seen())
+                .seen(false)
                 .build();
         if (notificationRepository.save(newNotification)!=null){
             return "Notification registered";

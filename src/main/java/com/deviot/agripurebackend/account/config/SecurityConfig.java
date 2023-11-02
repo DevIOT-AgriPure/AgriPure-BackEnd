@@ -37,6 +37,7 @@ public class SecurityConfig {
                                 ,"/swagger-ui.html"
                                 ,"/api/v1/profiles/**"
                                 ,"/api/v1/notifications/**"
+                                        ,"/api/v1/notifications"
                                 ,"api/v1/plant/**"
                                 ,"/api/v1/crops/**"
                                 ,"api/v1/CropReports/**"

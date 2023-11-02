@@ -31,7 +31,7 @@ public class Notification implements Serializable {
     private String notificationType;
 
     @Column(name = "date")
-    private String date;
+    private Date date;
 
     @Column(name = "to_account_id")
     private Long toAccountId;

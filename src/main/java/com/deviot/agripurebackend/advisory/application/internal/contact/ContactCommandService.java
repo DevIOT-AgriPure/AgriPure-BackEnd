@@ -3,6 +3,7 @@ package com.deviot.agripurebackend.advisory.application.internal.contact;
 import com.deviot.agripurebackend.advisory.domain.Services.contact.IContactCommandService;
 import com.deviot.agripurebackend.advisory.domain.model.commands.contact.CreateContactCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.contact.DeleteContactCommand;
+import com.deviot.agripurebackend.advisory.domain.model.commands.contact.StartChatCommand;
 import com.deviot.agripurebackend.advisory.domain.model.entities.Contact;
 import com.deviot.agripurebackend.advisory.infrastructure.ContactRepository;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,19 @@ public class ContactCommandService implements IContactCommandService {
         }
         else{
             return "Contact with the given id doesn't exist";
+        }
+    }
+
+    @Override
+    public String handle(StartChatCommand startChatCommand){
+        Optional<Contact> contact=contactRepository.findById(startChatCommand.id());
+        if(contact.isPresent()){
+            contact.get().setIsChatStarted(true);
+            contactRepository.save(contact.get());
+            return "Chat started";
+        }
+        else{
+            return "contact with the given id doesn't exist";
         }
     }
 

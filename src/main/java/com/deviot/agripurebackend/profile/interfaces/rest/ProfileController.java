@@ -4,6 +4,7 @@ import com.deviot.agripurebackend.account.application.internal.QueryService.Acco
 import com.deviot.agripurebackend.account.domain.model.aggregates.Account;
 import com.deviot.agripurebackend.account.domain.model.commands.DeleteAccountCommand;
 import com.deviot.agripurebackend.account.domain.model.enums.AccountRol;
+import com.deviot.agripurebackend.account.domain.model.queries.GetAccountByEmailQuery;
 import com.deviot.agripurebackend.account.domain.model.queries.GetEmailAndTypeByAccountIdQuery;
 import com.deviot.agripurebackend.account.domain.model.queries.GetSpecialistsQuery;
 import com.deviot.agripurebackend.profile.application.internal.ProfileCommandService;
@@ -45,6 +46,32 @@ public class ProfileController {
         Account account=this.accountQueryService.handle(getEmailAndTypeByAccountIdQuery);
 
         if (profile!=null && account!=null){
+            User user=User.builder()
+                    .email(account.getEmail())
+                    .name(profile.getName())
+                    .description(profile.getDescription())
+                    .imageUrl(profile.getImageUrl())
+                    .location(profile.getLocation())
+                    .type(account.getRol().toString())
+                    .planId(profile.getPlanId())
+                    .accountId(profile.getAccountId())
+                    .build();
+
+            return ResponseEntity.ok(user);
+        }else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/getProfileByEmail/{email}")
+    public ResponseEntity<?> getUserByAccountEmail(@PathVariable("email")String email){
+        GetAccountByEmailQuery getAccountByEmailQuery=new GetAccountByEmailQuery(email);
+        Account account= this.accountQueryService.handle(getAccountByEmailQuery);
+
+        GetProfileByAccountIdQuery getEmailAndTypeByAccountIdQuery=new GetProfileByAccountIdQuery(account.getId());
+        Profile profile=this.profileQueryService.handle(getEmailAndTypeByAccountIdQuery);
+
+        if (profile != null){
             User user=User.builder()
                     .email(account.getEmail())
                     .name(profile.getName())

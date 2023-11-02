@@ -37,7 +37,7 @@ public class SecurityConfig {
                                 ,"/swagger-ui.html"
                                 ,"/api/v1/profiles/**")
                                 .permitAll()
-                                .anyRequest().authenticated()
+                                .anyRequest().authenticated()//sdre
                         )
                 .sessionManagement(
                         sessionManager->sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS ))

@@ -40,6 +40,7 @@ public class NotificationCommandService implements INotificationsCommandService 
 
         Optional<Notification> notification = notificationRepository.findById(deleteNotificationCommand.id());
         if (!notification.isEmpty()){
+            this.notificationRepository.deleteById(deleteNotificationCommand.id());
             return "Notification with id"+deleteNotificationCommand.id()+"was deleted";
         }
         return "Notification with id:"+ deleteNotificationCommand.id()+"doesnt exists";

@@ -22,6 +22,9 @@ public class Activity {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "description")
+    private String description;
+
     @Column(name="date")
     private String date;
 

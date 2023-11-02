@@ -21,9 +21,11 @@ public class ActivityCommandService implements IActivityCommandService {
         Activity newActivity=Activity.builder()
                 .projectId(createActivityCommand.projectId())
                 .title(createActivityCommand.title())
+                .description(createActivityCommand.description())
                 .date(createActivityCommand.date())
                 .completed(false)
                 .build();
+
         activityRepository.save(newActivity);
         return "Activity created!!!";
     }

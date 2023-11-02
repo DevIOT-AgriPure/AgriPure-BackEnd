@@ -3,6 +3,7 @@ package com.deviot.agripurebackend.advisory.domain.Services.project;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.CreateProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.DeleteProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.StartProjectCommand;
+import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
 
 public interface IProyectCommandService {
     String handle(CreateProjectCommand createProjectCommand);

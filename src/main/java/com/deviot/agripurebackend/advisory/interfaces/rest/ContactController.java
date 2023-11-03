@@ -4,6 +4,7 @@ import com.deviot.agripurebackend.advisory.application.internal.contact.ContactC
 import com.deviot.agripurebackend.advisory.application.internal.contact.ContactQueryService;
 import com.deviot.agripurebackend.advisory.domain.model.commands.contact.CreateContactCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.contact.DeleteContactCommand;
+import com.deviot.agripurebackend.advisory.domain.model.commands.contact.StartChatCommand;
 import com.deviot.agripurebackend.advisory.domain.model.entities.Contact;
 import com.deviot.agripurebackend.advisory.domain.model.queries.contact.GetContactByIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.contact.GetContactsByFarmerIdQuery;
@@ -63,6 +64,13 @@ public class ContactController {
     public ResponseEntity<?> deleteContactById(@PathVariable("contactId") Long contactId){
         DeleteContactCommand deleteContactCommand=new DeleteContactCommand(contactId);
         String message=this.contactCommandService.handle(deleteContactCommand);
+        return ResponseEntity.ok(message);
+    }
+
+    @PutMapping("/startChatForContact/{id}")
+    public ResponseEntity<?> startChatForProject(@PathVariable("id") Long id){
+        StartChatCommand startChatCommand=new StartChatCommand(id);
+        String message=this.contactCommandService.handle(startChatCommand);
         return ResponseEntity.ok(message);
     }
 }

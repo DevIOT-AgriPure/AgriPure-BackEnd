@@ -21,13 +21,13 @@ import java.util.List;
 public class CropController {
     private final CropCommandService cropCommandService;
     private final CropQueryService cropQueryService;
-
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<?> createCrop(@RequestBody CreateCropCommand createCropCommand){
         this.cropCommandService.handle(createCropCommand);
         return ResponseEntity.ok("Crop created!!!");
     }
-
+    @CrossOrigin
     @GetMapping("/{farmerId}")
     public ResponseEntity<?> getCropsByFarmerId(@PathVariable("farmerId") Long farmerId){
 
@@ -35,7 +35,7 @@ public class CropController {
         List<Crop> crops=this.cropQueryService.handle(getCropsByFarmerIdQuery);
         return ResponseEntity.ok(crops);
     }
-
+    @CrossOrigin
     @GetMapping("/getCrop/{cropId}")
     public ResponseEntity<?> getCropById(@PathVariable("cropId") Long cropId){
         GetCropByIdQuery getCropByIdQuery=new GetCropByIdQuery(cropId);
@@ -47,6 +47,7 @@ public class CropController {
             return ResponseEntity.notFound().build();
         }
     }
+    @CrossOrigin
     @DeleteMapping("/deleteCrop/{cropId}")
     public ResponseEntity<?> deleteCropById(@PathVariable("cropId") Long cropId){
         DeleteCropCommand deleteCropCommand=new DeleteCropCommand(cropId);

@@ -16,10 +16,7 @@ import com.deviot.agripurebackend.profile.domain.model.commands.specialist.Creat
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -32,11 +29,13 @@ public class AuthController {
     private final ProfileCommandService profileCommandService;
     private final SpecialistCommandService specialistCommandService;
 
+    @CrossOrigin
     @PostMapping(value = "login")
     public ResponseEntity<AuthResponse> logIn(@RequestBody LogInCommand logInCommand){
         return ResponseEntity.ok(this.accountCommandService.handle(logInCommand));
     }
 
+    @CrossOrigin
     @PostMapping(value="registerFarmer")
     public ResponseEntity<?> registerFarmer(@RequestBody CreateUserAccount createUserAccount){
 
@@ -58,6 +57,8 @@ public class AuthController {
         String message=this.profileCommandService.handle(createProfileCommand);
         return ResponseEntity.ok(message);
     }
+
+    @CrossOrigin
     @PostMapping(value="registerSpecialist")
     public ResponseEntity<?> registerSpecialist(@RequestBody CreateSpecialistAccount createSpecialistAccount){
 

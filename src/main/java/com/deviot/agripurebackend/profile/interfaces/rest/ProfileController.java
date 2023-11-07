@@ -37,12 +37,13 @@ public class ProfileController {
     private final SpecialistQueryService specialistQueryService;
     private final SpecialistCommandService specialistCommandService;
     private final AccountCommandService accountCommandService;
-
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<?> createProfile(@RequestBody CreateProfileCommand createProfileCommand){
         this.profileCommandService.handle(createProfileCommand);
         return ResponseEntity.ok("Profile created!!!");
     }
+    @CrossOrigin
     @GetMapping("/getProfile/{accountId}")
     public ResponseEntity<?> getUserByAccountId(@PathVariable("accountId")Long accountId){
         GetProfileByAccountIdQuery getProfileByAccountIdQuery=new GetProfileByAccountIdQuery(accountId);
@@ -68,7 +69,7 @@ public class ProfileController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @CrossOrigin
     @GetMapping("/getProfileByEmail/{email}")
     public ResponseEntity<?> getUserByAccountEmail(@PathVariable("email")String email){
         GetAccountByEmailQuery getAccountByEmailQuery=new GetAccountByEmailQuery(email);
@@ -94,7 +95,7 @@ public class ProfileController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @CrossOrigin
     @GetMapping("/getSpecialistInfoByAccountId/{accountId}")
     public ResponseEntity<?> getSpecialistInfoByAccountId(@PathVariable("accountId")Long accountId){
         GetSpecialistByAccountIdQuery getSpecialistByAccountIdQuery=new GetSpecialistByAccountIdQuery(accountId);
@@ -105,7 +106,7 @@ public class ProfileController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @CrossOrigin
     @GetMapping("/getSpecialists")
     public ResponseEntity<?>getAllProfilesBySpecialistType(){
         GetSpecialistsQuery getSpecialistsQuery =new GetSpecialistsQuery(AccountRol.SPECIALIST);
@@ -139,13 +140,13 @@ public class ProfileController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    @CrossOrigin
     @PutMapping
     public ResponseEntity<?> updateProfileByAccountId(@RequestBody UpdateProfileCommand updateProfileCommand){
         String message=this.profileCommandService.handle(updateProfileCommand);
         return ResponseEntity.ok(message);
     }
-
+    @CrossOrigin
     @DeleteMapping("/deleteProfile/{accountId}")
     public ResponseEntity<?> deleteProfileByAccountId(@PathVariable("accountId")Long accountId){
 

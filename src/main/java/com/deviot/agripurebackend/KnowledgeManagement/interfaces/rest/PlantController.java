@@ -17,20 +17,20 @@ import java.util.List;
 public class PlantController {
     private final PlantCommandService plantCommandService;
     private final PlantQueryService plantQueryService;
-
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<?> createPlant(@RequestBody CreatePlantCommand createPlantCommand){
         plantCommandService.handle(createPlantCommand);
         return ResponseEntity.ok("Plant created!!");
     }
 
-
+    @CrossOrigin
     @GetMapping
     public ResponseEntity<List<Plant>> getAllPlants(){
         List<Plant> plants=plantQueryService.handle();
         return ResponseEntity.ok(plants);
     }
-
+    @CrossOrigin
     @GetMapping("/{plantId}")
     public ResponseEntity<Plant> getPLantById(@PathVariable("plantId") Long plantId){
         GetPlantByIdQuery getPlantByIdQuery=new GetPlantByIdQuery(plantId);

@@ -22,13 +22,13 @@ public class ProjectController {
     private final ProjectCommandService projectCommandService;
     private final ProjectQueryService projectQueryService;
 
-
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<?> createProject(@RequestBody CreateProjectCommand createProjectCommand){
         this.projectCommandService.handle(createProjectCommand);
         return ResponseEntity.ok("Project Created!!");
     }
-
+    @CrossOrigin
     @GetMapping("/projectsById/{projectId}")
     public ResponseEntity<?> getProjectById(@PathVariable("projectId") Long projectId){
         GetProjectByIdQuery getProjectByIdQuery=new GetProjectByIdQuery(projectId);

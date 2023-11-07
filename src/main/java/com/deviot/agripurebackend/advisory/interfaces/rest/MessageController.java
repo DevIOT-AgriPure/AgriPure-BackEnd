@@ -17,13 +17,13 @@ import java.util.List;
 public class MessageController {
     private final MessageCommandService messageCommandService;
     private final MessageQueryService messageQueryService;
-
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<?> createMessage(@RequestBody CreateMessageCommand createMessageCommand){
         this.messageCommandService.handle(createMessageCommand);
         return ResponseEntity.ok("Message Created!");
     }
-
+    @CrossOrigin
     @GetMapping("/{contactId}")
     public ResponseEntity<?>getMessagesByContactId(@PathVariable("contactId") Long contactId){
         GetMessageByContactIdQuery getMessageByContactIdQuery=new GetMessageByContactIdQuery(contactId);

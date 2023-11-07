@@ -21,20 +21,20 @@ public class NotificationController {
     private final NotificationCommandService notificationCommandService;
 
     private final NotificationQueryService notificationQueryService;
-
+    @CrossOrigin
     @PostMapping
     public ResponseEntity<?> createNotification(@RequestBody CreateNotificationCommand createNotificationCommand){
         this.notificationCommandService.handle(createNotificationCommand);
         return ResponseEntity.ok("Notification created!!");
     }
-
+    @CrossOrigin
     @DeleteMapping("/deleteNotificationById/{id}")
     public ResponseEntity<?> deleteNotificationById(@PathVariable("id") Long id){
         DeleteNotificationCommand deleteNotificationCommand=new DeleteNotificationCommand(id);
         this.notificationCommandService.handle(deleteNotificationCommand);
         return ResponseEntity.ok("Notification deleted");
     }
-
+    @CrossOrigin
     @GetMapping("/getByToAccountId/{toAccountId}")
     public ResponseEntity<?> getNotificationsByToAccountId(@PathVariable("toAccountId") Long toAccountId){
         GetNotificationsByToAccountId getNotificationsByToAccountId=new GetNotificationsByToAccountId(toAccountId);

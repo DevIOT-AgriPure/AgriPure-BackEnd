@@ -43,4 +43,7 @@ public class Device {
 
     @Column(name = "active_real_time_data")
     private boolean activeRealTimeData;
+
+    @Column(name="plan_temperature")
+    private double planTemperature;
 }

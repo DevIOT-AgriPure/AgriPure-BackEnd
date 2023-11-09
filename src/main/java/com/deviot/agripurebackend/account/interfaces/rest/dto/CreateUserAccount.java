@@ -15,6 +15,7 @@ public class CreateUserAccount {
     String name;
     String description;
     String imageUrl;
+    String imageName;
     String location;
     String type;
     Long planId;

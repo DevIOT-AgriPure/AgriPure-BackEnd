@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class UpdateSpecialistProfile {
+    Long accountId;
     String email;
     String name;
     String description;
     String imageUrl;
     String imageName;
     String location;
-    String type;
-    Long planId;
-    Long accountId;
-
+    String expertise;
+    String contactEmail;
+    String areasOfFocus;
 }

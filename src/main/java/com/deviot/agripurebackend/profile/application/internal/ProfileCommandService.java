@@ -22,6 +22,7 @@ public class ProfileCommandService implements IProfileCommandService {
                 .name(createProfileCommand.name())
                 .description(createProfileCommand.description())
                 .imageUrl(createProfileCommand.imageUrl())
+                .imageName(createProfileCommand.imageName())
                 .location(createProfileCommand.location())
                 .planId(createProfileCommand.planId())
                 .build();
@@ -39,6 +40,7 @@ public class ProfileCommandService implements IProfileCommandService {
             profile.get().setName(updateProfileCommand.name());
             profile.get().setDescription(updateProfileCommand.description());
             profile.get().setImageUrl(updateProfileCommand.imageUrl());
+            profile.get().setImageName(updateProfileCommand.imageName());
             profile.get().setLocation(updateProfileCommand.location());
             profileRepository.save(profile.get());
             return "Profile updated!";

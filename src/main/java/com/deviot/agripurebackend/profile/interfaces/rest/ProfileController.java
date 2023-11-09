@@ -17,8 +17,10 @@ import com.deviot.agripurebackend.profile.domain.model.commands.CreateProfileCom
 import com.deviot.agripurebackend.profile.domain.model.commands.DeleteProfileCommand;
 import com.deviot.agripurebackend.profile.domain.model.commands.UpdateProfileCommand;
 import com.deviot.agripurebackend.profile.domain.model.commands.specialist.DeleteSpecialistCommand;
+import com.deviot.agripurebackend.profile.domain.model.commands.specialist.UpdateSpecialistCommand;
 import com.deviot.agripurebackend.profile.domain.model.queries.GetProfileByAccountIdQuery;
 import com.deviot.agripurebackend.profile.domain.model.queries.specialist.GetSpecialistByAccountIdQuery;
+import com.deviot.agripurebackend.profile.interfaces.rest.dto.UpdateSpecialistProfile;
 import com.deviot.agripurebackend.profile.interfaces.rest.dto.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -58,6 +60,7 @@ public class ProfileController {
                     .name(profile.getName())
                     .description(profile.getDescription())
                     .imageUrl(profile.getImageUrl())
+                    .imageName(profile.getImageName())
                     .location(profile.getLocation())
                     .type(account.getRol().toString())
                     .planId(profile.getPlanId())
@@ -84,6 +87,7 @@ public class ProfileController {
                     .name(profile.getName())
                     .description(profile.getDescription())
                     .imageUrl(profile.getImageUrl())
+                    .imageName(profile.getImageName())
                     .location(profile.getLocation())
                     .type(account.getRol().toString())
                     .planId(profile.getPlanId())
@@ -126,6 +130,7 @@ public class ProfileController {
                             .name(profile.getName())
                             .description(profile.getDescription())
                             .imageUrl(profile.getImageUrl())
+                            .imageName(profile.getImageName())
                             .location(profile.getLocation())
                             .type(account.getRol().toString())
                             .planId(profile.getPlanId())
@@ -141,10 +146,22 @@ public class ProfileController {
         }
     }
     @CrossOrigin
-    @PutMapping
-    public ResponseEntity<?> updateProfileByAccountId(@RequestBody UpdateProfileCommand updateProfileCommand){
+    @PutMapping("/updateFarmer")
+    public ResponseEntity<?> updateFarmerProfileByAccountId(@RequestBody UpdateProfileCommand updateProfileCommand){
         String message=this.profileCommandService.handle(updateProfileCommand);
         return ResponseEntity.ok(message);
+    }
+    @CrossOrigin
+    @PutMapping("/updateSpecialist")
+    public ResponseEntity<?> updateSpecialistProfileByAccountId(@RequestBody UpdateSpecialistProfile updateSpecialistProfile){
+        UpdateProfileCommand updateProfileCommand=new UpdateProfileCommand(updateSpecialistProfile.getAccountId(),
+                updateSpecialistProfile.getName(), updateSpecialistProfile.getDescription(),
+                updateSpecialistProfile.getImageUrl(), updateSpecialistProfile.getImageName(),
+                updateSpecialistProfile.getLocation());
+        UpdateSpecialistCommand updateSpecialistCommand=new UpdateSpecialistCommand(updateProfileCommand.accountId(), updateSpecialistProfile.getExpertise(), updateSpecialistProfile.getContactEmail(), updateSpecialistProfile.getAreasOfFocus());
+        String messageSpecialist=this.specialistCommandService.handle(updateSpecialistCommand);
+        String message=this.profileCommandService.handle(updateProfileCommand);
+        return ResponseEntity.ok(message+messageSpecialist);
     }
     @CrossOrigin
     @DeleteMapping("/deleteProfile/{accountId}")

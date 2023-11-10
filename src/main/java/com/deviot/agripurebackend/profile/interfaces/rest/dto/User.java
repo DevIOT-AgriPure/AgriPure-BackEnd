@@ -14,7 +14,6 @@ public class User {
     String name;
     String description;
     String imageUrl;
-    String imageName;
     String location;
     String type;
     Long planId;

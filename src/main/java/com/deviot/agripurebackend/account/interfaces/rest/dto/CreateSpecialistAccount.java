@@ -15,7 +15,6 @@ public class CreateSpecialistAccount {
     String name;
     String description;
     String imageUrl;
-    String imageName;
     String location;
     String type;
     String expertise;

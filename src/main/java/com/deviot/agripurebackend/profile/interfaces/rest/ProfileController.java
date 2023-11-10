@@ -60,7 +60,6 @@ public class ProfileController {
                     .name(profile.getName())
                     .description(profile.getDescription())
                     .imageUrl(profile.getImageUrl())
-                    .imageName(profile.getImageName())
                     .location(profile.getLocation())
                     .type(account.getRol().toString())
                     .planId(profile.getPlanId())
@@ -87,7 +86,6 @@ public class ProfileController {
                     .name(profile.getName())
                     .description(profile.getDescription())
                     .imageUrl(profile.getImageUrl())
-                    .imageName(profile.getImageName())
                     .location(profile.getLocation())
                     .type(account.getRol().toString())
                     .planId(profile.getPlanId())
@@ -130,7 +128,6 @@ public class ProfileController {
                             .name(profile.getName())
                             .description(profile.getDescription())
                             .imageUrl(profile.getImageUrl())
-                            .imageName(profile.getImageName())
                             .location(profile.getLocation())
                             .type(account.getRol().toString())
                             .planId(profile.getPlanId())
@@ -156,8 +153,7 @@ public class ProfileController {
     public ResponseEntity<?> updateSpecialistProfileByAccountId(@RequestBody UpdateSpecialistProfile updateSpecialistProfile){
         UpdateProfileCommand updateProfileCommand=new UpdateProfileCommand(updateSpecialistProfile.getAccountId(),
                 updateSpecialistProfile.getName(), updateSpecialistProfile.getDescription(),
-                updateSpecialistProfile.getImageUrl(), updateSpecialistProfile.getImageName(),
-                updateSpecialistProfile.getLocation());
+                updateSpecialistProfile.getImageUrl(),updateSpecialistProfile.getLocation(),updateSpecialistProfile.getPlanId());
         UpdateSpecialistCommand updateSpecialistCommand=new UpdateSpecialistCommand(updateProfileCommand.accountId(), updateSpecialistProfile.getExpertise(), updateSpecialistProfile.getContactEmail(), updateSpecialistProfile.getAreasOfFocus());
         String messageSpecialist=this.specialistCommandService.handle(updateSpecialistCommand);
         String message=this.profileCommandService.handle(updateProfileCommand);

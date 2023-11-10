@@ -52,7 +52,6 @@ public class AuthController {
                 createUserAccount.getName(),
                 createUserAccount.getDescription(),
                 createUserAccount.getImageUrl(),
-                createUserAccount.getImageName(),
                 createUserAccount.getLocation(),
                 createUserAccount.getPlanId());
         String message=this.profileCommandService.handle(createProfileCommand);
@@ -76,7 +75,6 @@ public class AuthController {
                 createSpecialistAccount.getName(),
                 createSpecialistAccount.getDescription(),
                 createSpecialistAccount.getImageUrl(),
-                createSpecialistAccount.getImageName(),
                 createSpecialistAccount.getLocation(),
                 createSpecialistAccount.getPlanId());
         CreateSpecialistCommand createSpecialistCommand=new CreateSpecialistCommand(

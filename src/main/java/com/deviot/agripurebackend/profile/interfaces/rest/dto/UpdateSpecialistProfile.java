@@ -15,9 +15,9 @@ public class UpdateSpecialistProfile {
     String name;
     String description;
     String imageUrl;
-    String imageName;
     String location;
     String expertise;
     String contactEmail;
     String areasOfFocus;
+    Long planId;
 }

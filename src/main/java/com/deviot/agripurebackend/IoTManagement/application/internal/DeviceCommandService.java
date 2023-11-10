@@ -1,10 +1,7 @@
 package com.deviot.agripurebackend.IoTManagement.application.internal;
 
 import com.deviot.agripurebackend.IoTManagement.domain.model.aggregate.Device;
-import com.deviot.agripurebackend.IoTManagement.domain.model.commands.SetRealTimeDataCommand;
-import com.deviot.agripurebackend.IoTManagement.domain.model.commands.createDeviceCommand;
-import com.deviot.agripurebackend.IoTManagement.domain.model.commands.setActiveNotification;
-import com.deviot.agripurebackend.IoTManagement.domain.model.commands.setDeviceStatus;
+import com.deviot.agripurebackend.IoTManagement.domain.model.commands.*;
 import com.deviot.agripurebackend.IoTManagement.domain.service.CommandService.IDeviceCommandService;
 import com.deviot.agripurebackend.IoTManagement.infrastructure.DeviceRepository;
 import lombok.RequiredArgsConstructor;
@@ -68,5 +65,19 @@ public class DeviceCommandService implements IDeviceCommandService {
         else{
             return "Device not found!";
         }
+    }
+
+    @Override
+    public Long handle(SetTemperatureCommand command) {
+        Optional<Device> device=deviceRepository.findById(command.deviceId());
+        if(device.isPresent()){
+            device.get().setPlanTemperature(command.temperature());
+            deviceRepository.save(device.get());
+            return 1L;
+        }
+        else{
+            return 0L;
+        }
+
     }
 }

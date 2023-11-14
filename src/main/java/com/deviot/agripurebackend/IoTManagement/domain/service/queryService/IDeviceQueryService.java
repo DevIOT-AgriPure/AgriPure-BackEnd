@@ -6,6 +6,6 @@ import com.deviot.agripurebackend.IoTManagement.domain.model.queries.getTemperat
 
 public interface IDeviceQueryService {
 
-    double handle(getTemperatureQuery query);
+    Double handle(getTemperatureQuery query);
     Device handle(GetDeviceByIdQuery query);
 }

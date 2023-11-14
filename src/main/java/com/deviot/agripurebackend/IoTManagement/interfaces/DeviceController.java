@@ -2,30 +2,35 @@ package com.deviot.agripurebackend.IoTManagement.interfaces;
 
 import com.deviot.agripurebackend.IoTManagement.application.internal.DeviceCommandService;
 import com.deviot.agripurebackend.IoTManagement.application.internal.DeviceQueryService;
+import com.deviot.agripurebackend.IoTManagement.domain.model.aggregate.Device;
 import com.deviot.agripurebackend.IoTManagement.domain.model.commands.*;
+import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetDeviceByIdQuery;
 import com.deviot.agripurebackend.IoTManagement.domain.model.queries.getTemperatureQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 @RequestMapping("api/v1/devices")
 public class DeviceController {
     private final DeviceCommandService deviceCommandService;
     private final DeviceQueryService deviceQueryService;
 
 
-    @GetMapping("temperature")
-    public ResponseEntity<Double> GetTemperature(@RequestBody getTemperatureQuery query){
-        double response = deviceQueryService.handle(query);
+    @GetMapping("/temperature/{id}")
+    public ResponseEntity<Double> GetTemperature(@PathVariable("id") Long id){
+        getTemperatureQuery query=new getTemperatureQuery(id);
+        Double response = deviceQueryService.handle(query);
         return ResponseEntity.ok(response);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<Device> GetDevice(@PathVariable("id")Long id){
+        GetDeviceByIdQuery query=new GetDeviceByIdQuery(id);
+        Device response=deviceQueryService.handle(query);
+        return ResponseEntity.ok(response);
 
+    }
     @PostMapping()
     public ResponseEntity<?> CreateDevice(@RequestBody createDeviceCommand command){
         String response= deviceCommandService.handle(command);

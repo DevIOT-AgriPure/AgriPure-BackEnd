@@ -16,14 +16,14 @@ public class DeviceQueryService implements IDeviceQueryService {
     private final DeviceRepository deviceRepository;
 
     @Override
-    public double handle(getTemperatureQuery query) {
+    public Double handle(getTemperatureQuery query) {
         Optional<Device> device=deviceRepository.findById(query.deviceId());
         if(device.isPresent())
         {
             return device.get().getPlanTemperature();
         }
         else{
-            return -1;
+            return -1D;
         }
     }
 

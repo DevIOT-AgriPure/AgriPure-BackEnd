@@ -30,13 +30,16 @@ public class Device {
     private String cropName;
 
     @Column(name = "farmer_id")
-    private long farmerId;
+    private Long farmerId;
 
     @Column(name="project_id")
     private Long projectId;
 
     @Column(name="active")
     private boolean active;
+
+    @Column(name = "crop_id")
+    private Long cropId;
 
     @Column(name="active_notification")
     private boolean activeNotification;

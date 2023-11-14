@@ -5,7 +5,9 @@ import com.deviot.agripurebackend.IoTManagement.application.internal.DeviceQuery
 import com.deviot.agripurebackend.IoTManagement.domain.model.aggregate.Device;
 import com.deviot.agripurebackend.IoTManagement.domain.model.commands.*;
 import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetDeviceByIdQuery;
+import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetTemperaturesAndHumidityByCropIdQuery;
 import com.deviot.agripurebackend.IoTManagement.domain.model.queries.getTemperatureQuery;
+import com.deviot.agripurebackend.IoTManagement.interfaces.DTOs.TemperatureAndHumidity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,12 +35,26 @@ public class DeviceController {
         return ResponseEntity.ok(response);
 
     }
+
+    @GetMapping("cropId/{cropId}")
+    public ResponseEntity<List<TemperatureAndHumidity>> GetDataByCropId(@PathVariable("cropId")Long cropId){
+        GetTemperaturesAndHumidityByCropIdQuery query=new GetTemperaturesAndHumidityByCropIdQuery(cropId);
+        List<TemperatureAndHumidity> response=deviceQueryService.handle(query);
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping()
     public ResponseEntity<?> CreateDevice(@RequestBody createDeviceCommand command){
         String response= deviceCommandService.handle(command);
         return ResponseEntity.ok(response);
     }
+    @PutMapping("assign/{deviceId}/{cropId}")
+    public ResponseEntity<Long> AssignCropToDevice(@PathVariable("deviceId")Long deviceId,@PathVariable("cropId")Long cropId){
+        AssignDeviceToCropCommand command=new AssignDeviceToCropCommand(deviceId,cropId);
+        Long response=deviceCommandService.handle(command);
+        return ResponseEntity.ok(response);
 
+    }
     @PostMapping("notification")
     public ResponseEntity<?> SetActiveNotification(@RequestBody setActiveNotification command){
         String response=deviceCommandService.handle(command);

@@ -84,4 +84,17 @@ public class DeviceCommandService implements IDeviceCommandService {
         }
 
     }
+
+    @Override
+    public Long handle(AssignDeviceToCropCommand command) {
+        Optional<Device> device=deviceRepository.findById(command.deviceId());
+        if (device.isPresent()){
+            device.get().setCropId(command.cropId());
+            deviceRepository.save(device.get());
+            return 1L;
+        }
+        else{
+            return 0L;
+        }
+    }
 }

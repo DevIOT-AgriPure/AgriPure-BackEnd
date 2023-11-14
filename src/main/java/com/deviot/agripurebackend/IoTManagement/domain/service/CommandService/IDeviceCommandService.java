@@ -9,4 +9,5 @@ public interface IDeviceCommandService {
     String handle(SetRealTimeDataCommand command);
 
     Long handle(SetTemperatureCommand command);
+    Long handle(AssignDeviceToCropCommand command);
 }

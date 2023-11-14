@@ -46,4 +46,7 @@ public class Device {
 
     @Column(name="plan_temperature")
     private Double planTemperature;
+
+    @Column(name="plan_humidity")
+    private Double planHumidity;
 }

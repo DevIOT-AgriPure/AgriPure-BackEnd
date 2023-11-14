@@ -8,6 +8,8 @@ import com.deviot.agripurebackend.IoTManagement.infrastructure.DeviceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,14 +18,17 @@ public class DeviceQueryService implements IDeviceQueryService {
     private final DeviceRepository deviceRepository;
 
     @Override
-    public Double handle(getTemperatureQuery query) {
+    public List<Double> handle(getTemperatureQuery query) {
         Optional<Device> device=deviceRepository.findById(query.deviceId());
         if(device.isPresent())
         {
-            return device.get().getPlanTemperature();
+            List<Double> response=new ArrayList<>();
+            response.add(device.get().getPlanTemperature());
+            response.add(device.get().getPlanHumidity());
+            return response;
         }
         else{
-            return -1D;
+            throw new RuntimeException("Device doesn't exist");
         }
     }
 

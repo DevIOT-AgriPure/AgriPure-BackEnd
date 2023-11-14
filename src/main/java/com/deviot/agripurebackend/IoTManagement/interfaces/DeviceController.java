@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("api/v1/devices")
@@ -18,10 +20,10 @@ public class DeviceController {
     private final DeviceQueryService deviceQueryService;
 
 
-    @GetMapping("/temperature/{id}")
-    public ResponseEntity<Double> GetTemperature(@PathVariable("id") Long id){
+    @GetMapping("/temperaturehumidity/{id}")
+    public ResponseEntity<List<Double>> GetTemperature(@PathVariable("id") Long id){
         getTemperatureQuery query=new getTemperatureQuery(id);
-        Double response = deviceQueryService.handle(query);
+        List<Double> response = deviceQueryService.handle(query);
         return ResponseEntity.ok(response);
     }
     @GetMapping("/{id}")

@@ -36,6 +36,7 @@ public class DeviceCommandService implements IDeviceCommandService {
         Optional<Device> device=deviceRepository.findById(command.deviceId());
         if(device.isPresent()){
             device.get().setActiveNotification(command.newStatus());
+            deviceRepository.save(device.get());
             return "Device status notification changed!!";
         }
         else{
@@ -48,6 +49,7 @@ public class DeviceCommandService implements IDeviceCommandService {
         Optional<Device> device=deviceRepository.findById(command.deviceId());
         if(device.isPresent()){
             device.get().setActive(command.newStatus());
+            deviceRepository.save(device.get());
             return "Device status changed!!";
         }
         else{
@@ -60,6 +62,7 @@ public class DeviceCommandService implements IDeviceCommandService {
         Optional<Device> device=deviceRepository.findById(command.deviceId());
         if(device.isPresent()){
             device.get().setActiveRealTimeData(command.newStatus());
+            deviceRepository.save(device.get());
             return "Device status changed!!";
         }
         else{
@@ -72,6 +75,7 @@ public class DeviceCommandService implements IDeviceCommandService {
         Optional<Device> device=deviceRepository.findById(command.deviceId());
         if(device.isPresent()){
             device.get().setPlanTemperature(command.temperature());
+            device.get().setPlanHumidity(command.humidity());
             deviceRepository.save(device.get());
             return 1L;
         }

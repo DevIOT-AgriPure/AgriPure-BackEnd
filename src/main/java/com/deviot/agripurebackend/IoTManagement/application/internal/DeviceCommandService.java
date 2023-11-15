@@ -16,6 +16,22 @@ public class DeviceCommandService implements IDeviceCommandService {
 
 
     @Override
+    public Long handle(updateDeviceByIdCommand updateDeviceByIdCommand) {
+        Optional<Device> device=deviceRepository.findById(updateDeviceByIdCommand.id());
+        if(device.isPresent()){
+            device.get().setName(updateDeviceByIdCommand.name());
+            device.get().setCropName(updateDeviceByIdCommand.cropName());
+            device.get().setProjectId(updateDeviceByIdCommand.projectId());
+            device.get().setActive(updateDeviceByIdCommand.active());
+            device.get().setActiveNotification(updateDeviceByIdCommand.activeNotification());
+            Device updatedDevice = deviceRepository.save(device.get());
+            return updatedDevice.getId();
+        }else {
+            return (long)0;
+        }
+    }
+
+    @Override
     public Long handle(createDeviceCommand command) {
         Device newDevice= Device.builder().name(command.name())
                 .model(command.model())
@@ -56,6 +72,8 @@ public class DeviceCommandService implements IDeviceCommandService {
         Optional<Device> device=deviceRepository.findById(command.deviceId());
         if(device.isPresent()){
             device.get().setActive(command.newStatus());
+            device.get().setActiveNotification(command.newStatus());
+            device.get().setActiveRealTimeData(command.newStatus());
             deviceRepository.save(device.get());
             return "Device status changed!!";
         }

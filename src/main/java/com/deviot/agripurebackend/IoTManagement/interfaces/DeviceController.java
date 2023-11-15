@@ -52,6 +52,12 @@ public class DeviceController {
         return ResponseEntity.ok(response);
     }
 
+    @PutMapping("updateDeviceById")
+    public ResponseEntity<?> updateDeviceById(@RequestBody updateDeviceByIdCommand updateDeviceByIdCommand){
+        Long response=deviceCommandService.handle(updateDeviceByIdCommand);
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping("notification")
     public ResponseEntity<?> SetActiveNotification(@RequestBody setActiveNotification command){
         String response=deviceCommandService.handle(command);

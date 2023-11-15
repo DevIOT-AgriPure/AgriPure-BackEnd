@@ -30,7 +30,7 @@ public class Device {
     private String cropName;
 
     @Column(name = "farmer_id")
-    private long farmerId;
+    private Long farmerId;
 
     @Column(name="project_id")
     private Long projectId;

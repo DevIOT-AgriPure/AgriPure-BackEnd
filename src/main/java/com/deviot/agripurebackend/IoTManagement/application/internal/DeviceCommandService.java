@@ -16,7 +16,7 @@ public class DeviceCommandService implements IDeviceCommandService {
 
 
     @Override
-    public String handle(createDeviceCommand command) {
+    public Long handle(createDeviceCommand command) {
         Device newDevice= Device.builder().name(command.name())
                 .model(command.model())
                 .category(command.category())
@@ -26,9 +26,16 @@ public class DeviceCommandService implements IDeviceCommandService {
                 .active(false)
                 .activeNotification(false)
                 .activeRealTimeData(false)
+                .planTemperature(0.0)
+                .planHumidity(0.0)
                 .build();
-        deviceRepository.save(newDevice);
-        return "Device created!!";
+        // Guardar el dispositivo y obtener el dispositivo guardado con el ID asignado
+        Device savedDevice = deviceRepository.save(newDevice);
+
+        // Obtener el ID del dispositivo guardado
+        Long deviceId = savedDevice.getId();
+
+        return deviceId;
     }
 
     @Override

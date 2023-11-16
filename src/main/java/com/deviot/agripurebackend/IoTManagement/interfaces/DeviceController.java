@@ -11,7 +11,7 @@ import com.deviot.agripurebackend.IoTManagement.domain.model.queries.getTemperat
 import com.deviot.agripurebackend.IoTManagement.interfaces.DTOs.TemperatureAndHumidity;
 
 import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetDevicesByFarmerIdQuery;
-import com.deviot.agripurebackend.IoTManagement.domain.model.queries.getTemperatureQuery;
+
 import com.deviot.agripurebackend.IoTManagement.interfaces.dto.DeviceValuesDTO;
 
 import lombok.RequiredArgsConstructor;

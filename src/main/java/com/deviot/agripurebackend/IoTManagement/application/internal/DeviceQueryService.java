@@ -39,15 +39,15 @@ public class DeviceQueryService implements IDeviceQueryService {
     @Override
 
     public List<TemperatureAndHumidity> handle(GetTemperaturesAndHumidityByCropIdQuery query) {
-        List<Device> devices=deviceRepository.findDevicesByCropId(query.cropId());
-        return devices.stream().map(device->{
-            TemperatureAndHumidity data=new TemperatureAndHumidity();
+        List<Device> devices = deviceRepository.findDevicesByCropId(query.cropId());
+        return devices.stream().map(device -> {
+            TemperatureAndHumidity data = new TemperatureAndHumidity();
             data.setDeviceId(device.getId());
             data.setTemperature(device.getPlanTemperature());
             data.setHumidity(device.getPlanHumidity());
             return data;
         }).collect(Collectors.toList());
-
+    }
 
     public List<Device> handle(GetDevicesByFarmerIdQuery getDevicesByFarmerIdQuery) {
         List<Device> devices=deviceRepository.findDevicesByFarmerId(getDevicesByFarmerIdQuery.farmerId());

@@ -16,7 +16,23 @@ public class DeviceCommandService implements IDeviceCommandService {
 
 
     @Override
-    public String handle(createDeviceCommand command) {
+    public Long handle(updateDeviceByIdCommand updateDeviceByIdCommand) {
+        Optional<Device> device=deviceRepository.findById(updateDeviceByIdCommand.id());
+        if(device.isPresent()){
+            device.get().setName(updateDeviceByIdCommand.name());
+            device.get().setCropName(updateDeviceByIdCommand.cropName());
+            device.get().setProjectId(updateDeviceByIdCommand.projectId());
+            device.get().setActive(updateDeviceByIdCommand.active());
+            device.get().setActiveNotification(updateDeviceByIdCommand.activeNotification());
+            Device updatedDevice = deviceRepository.save(device.get());
+            return updatedDevice.getId();
+        }else {
+            return (long)0;
+        }
+    }
+
+    @Override
+    public Long handle(createDeviceCommand command) {
         Device newDevice= Device.builder().name(command.name())
                 .model(command.model())
                 .category(command.category())
@@ -26,9 +42,16 @@ public class DeviceCommandService implements IDeviceCommandService {
                 .active(false)
                 .activeNotification(false)
                 .activeRealTimeData(false)
+                .planTemperature(0.0)
+                .planHumidity(0.0)
                 .build();
-        deviceRepository.save(newDevice);
-        return "Device created!!";
+        // Guardar el dispositivo y obtener el dispositivo guardado con el ID asignado
+        Device savedDevice = deviceRepository.save(newDevice);
+
+        // Obtener el ID del dispositivo guardado
+        Long deviceId = savedDevice.getId();
+
+        return deviceId;
     }
 
     @Override
@@ -49,6 +72,8 @@ public class DeviceCommandService implements IDeviceCommandService {
         Optional<Device> device=deviceRepository.findById(command.deviceId());
         if(device.isPresent()){
             device.get().setActive(command.newStatus());
+            device.get().setActiveNotification(command.newStatus());
+            device.get().setActiveRealTimeData(command.newStatus());
             deviceRepository.save(device.get());
             return "Device status changed!!";
         }

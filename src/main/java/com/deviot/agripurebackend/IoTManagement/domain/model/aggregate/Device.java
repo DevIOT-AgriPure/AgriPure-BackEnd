@@ -38,6 +38,9 @@ public class Device {
     @Column(name="active")
     private boolean active;
 
+    @Column(name = "crop_id")
+    private Long cropId;
+
     @Column(name="active_notification")
     private boolean activeNotification;
 

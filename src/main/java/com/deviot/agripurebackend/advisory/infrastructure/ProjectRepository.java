@@ -10,4 +10,6 @@ import java.util.List;
 public interface ProjectRepository extends JpaRepository<Project,Long> {
     List<Project> findProjectsByFarmerId(Long id);
     List<Project> findProjectsBySpecialistId(Long id);
+
+    Project findProjectByCropId(Long projectId);
 }

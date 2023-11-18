@@ -37,6 +37,7 @@ public class DeviceCommandService implements IDeviceCommandService {
                 .model(command.model())
                 .category(command.category())
                 .cropName(command.cropName())
+                .cropId(command.cropId())
                 .farmerId(command.farmerId())
                 .projectId(command.projectId())
                 .active(false)

@@ -28,6 +28,9 @@ public class Project {
     @Column(name="crop_id")
     private Long cropId;
 
+    @Column(name="device")
+    private Boolean device;
+
     @Column(name="name")
     private String name;
 

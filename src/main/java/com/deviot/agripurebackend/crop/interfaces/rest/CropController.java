@@ -5,6 +5,7 @@ import com.deviot.agripurebackend.crop.application.internal.QueryService.CropQue
 import com.deviot.agripurebackend.crop.domain.model.aggregates.Crop;
 import com.deviot.agripurebackend.crop.domain.model.commands.CreateCropCommand;
 import com.deviot.agripurebackend.crop.domain.model.commands.DeleteCropCommand;
+import com.deviot.agripurebackend.crop.domain.model.commands.SetSpecialistToCropCommand;
 import com.deviot.agripurebackend.crop.domain.model.queries.GetCropByIdQuery;
 import com.deviot.agripurebackend.crop.domain.model.queries.GetCropsByFarmerIdQuery;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -47,6 +48,14 @@ public class CropController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @CrossOrigin
+    @PutMapping("/setSpecialistToProject")
+    public ResponseEntity<?> setSpecialistToProject(@RequestBody SetSpecialistToCropCommand setSpecialistToCropCommand){
+        String message=this.cropCommandService.handle(setSpecialistToCropCommand);
+        return ResponseEntity.ok(message);
+    }
+
     @CrossOrigin
     @DeleteMapping("/deleteCrop/{cropId}")
     public ResponseEntity<?> deleteCropById(@PathVariable("cropId") Long cropId){

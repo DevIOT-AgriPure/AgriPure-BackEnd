@@ -43,6 +43,8 @@ public class DeviceQueryService implements IDeviceQueryService {
         return devices.stream().map(device -> {
             TemperatureAndHumidity data = new TemperatureAndHumidity();
             data.setDeviceId(device.getId());
+            data.setName(device.getName());
+            data.setIsActiveRealTimeData(device.isActiveRealTimeData());
             data.setTemperature(device.getPlanTemperature());
             data.setHumidity(device.getPlanHumidity());
             return data;

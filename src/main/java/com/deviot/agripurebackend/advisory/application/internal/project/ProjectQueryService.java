@@ -2,6 +2,7 @@ package com.deviot.agripurebackend.advisory.application.internal.project;
 
 import com.deviot.agripurebackend.advisory.domain.Services.project.IProjectQueryService;
 import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
+import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByCropIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsByFarmerIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsBySpecialistIdQuery;
@@ -19,6 +20,12 @@ public class ProjectQueryService implements IProjectQueryService {
     @Override
     public Project handle(GetProjectByIdQuery getProjectByIdQuery) {
         Optional<Project> project =projectRepository.findById(getProjectByIdQuery.projectId());
+        return project.get();
+    }
+
+    @Override
+    public Project handle(GetProjectByCropIdQuery getProjectByCropIdQuery) {
+        Optional<Project> project= Optional.ofNullable(projectRepository.findProjectByCropId(getProjectByCropIdQuery.cropId()));
         return project.get();
     }
 

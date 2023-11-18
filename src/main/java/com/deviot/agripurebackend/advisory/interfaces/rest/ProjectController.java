@@ -2,10 +2,12 @@ package com.deviot.agripurebackend.advisory.interfaces.rest;
 
 import com.deviot.agripurebackend.advisory.application.internal.project.ProjectCommandService;
 import com.deviot.agripurebackend.advisory.application.internal.project.ProjectQueryService;
+import com.deviot.agripurebackend.advisory.domain.model.commands.project.AddDeviceProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.CreateProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.DeleteProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.StartProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
+import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByCropIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsByFarmerIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsBySpecialistIdQuery;
@@ -33,6 +35,19 @@ public class ProjectController {
     public ResponseEntity<?> getProjectById(@PathVariable("projectId") Long projectId){
         GetProjectByIdQuery getProjectByIdQuery=new GetProjectByIdQuery(projectId);
         Project project=this.projectQueryService.handle(getProjectByIdQuery);
+        if(project!=null){
+            return ResponseEntity.ok(project);
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @CrossOrigin
+    @GetMapping("/getProjectByCropId/{cropId}")
+    public ResponseEntity<?> getProjectByCropId(@PathVariable("cropId") Long cropId){
+        GetProjectByCropIdQuery getProjectByCropIdQuery=new GetProjectByCropIdQuery(cropId);
+        Project project=this.projectQueryService.handle(getProjectByCropIdQuery);
         if(project!=null){
             return ResponseEntity.ok(project);
         }
@@ -70,6 +85,13 @@ public class ProjectController {
     public ResponseEntity<?> startProjectById(@PathVariable("projectId") Long projectId){
         StartProjectCommand startProjectCommand=new StartProjectCommand(projectId);
         String message=this.projectCommandService.handle(startProjectCommand);
+        return ResponseEntity.ok(message);
+    }
+
+    @PutMapping("/AddDeviceProject/{projectId}")
+    public ResponseEntity<?> AddDeviceProject(@PathVariable("projectId") Long projectId){
+        AddDeviceProjectCommand addDeviceProjectCommand=new AddDeviceProjectCommand(projectId);
+        String message=this.projectCommandService.handle(addDeviceProjectCommand);
         return ResponseEntity.ok(message);
     }
 

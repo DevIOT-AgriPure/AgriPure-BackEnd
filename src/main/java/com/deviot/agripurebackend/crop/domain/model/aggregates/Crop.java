@@ -25,6 +25,9 @@ public class Crop {
     @Column(name="plant_id")
     private Long plantId;
 
+    @Column(name="specialist_id")
+    private Long specialistId;
+
     @Column(name = "created_at")
     private Date createdAt;
 

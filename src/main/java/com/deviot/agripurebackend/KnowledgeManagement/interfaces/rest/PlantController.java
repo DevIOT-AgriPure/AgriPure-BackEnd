@@ -5,6 +5,8 @@ import com.deviot.agripurebackend.KnowledgeManagement.application.PlantQueryServ
 import com.deviot.agripurebackend.KnowledgeManagement.domain.model.aggregates.Plant;
 import com.deviot.agripurebackend.KnowledgeManagement.domain.model.commands.CreatePlantCommand;
 import com.deviot.agripurebackend.KnowledgeManagement.domain.model.queries.GetPlantByIdQuery;
+import com.deviot.agripurebackend.KnowledgeManagement.domain.model.queries.GetTemperatureAndHumidityRangesByPlantIdQuery;
+import com.deviot.agripurebackend.KnowledgeManagement.interfaces.resources.RangesDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,5 +38,14 @@ public class PlantController {
         GetPlantByIdQuery getPlantByIdQuery=new GetPlantByIdQuery(plantId);
         Plant plant=plantQueryService.handle(getPlantByIdQuery);
         return ResponseEntity.ok(plant);
+    }
+
+    @CrossOrigin
+    @GetMapping("/ranges/{plantId}")
+    public ResponseEntity<RangesDTO> getRanges(@PathVariable("plantId")Long plantId){
+        GetTemperatureAndHumidityRangesByPlantIdQuery query=new GetTemperatureAndHumidityRangesByPlantIdQuery(plantId);
+        RangesDTO response=plantQueryService.handle(query);
+        return ResponseEntity.ok(response);
+
     }
 }

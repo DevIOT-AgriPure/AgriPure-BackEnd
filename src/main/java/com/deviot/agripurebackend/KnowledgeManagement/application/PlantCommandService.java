@@ -25,6 +25,10 @@ public class PlantCommandService implements IPlantCommandService {
                 .distanceBetweenPlants(createPlantCommand.distanceBetWeenPlants())
                 .idealPlantingDepth(createPlantCommand.idealPlantingDepth())
                 .fertilizationAndFumigation(createPlantCommand.fertilizationAndFumigation())
+                .minHumidity(createPlantCommand.minHumidity())
+                .maxHumidity(createPlantCommand.maxHumidity())
+                .maxTemperature(createPlantCommand.maxTemperature())
+                .minTemperature(createPlantCommand.minTemperature())
                 .build();
         plantRepository.save(plant);
         return 1L;

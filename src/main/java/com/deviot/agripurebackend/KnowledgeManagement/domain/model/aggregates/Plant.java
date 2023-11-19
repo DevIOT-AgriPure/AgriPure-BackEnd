@@ -40,4 +40,16 @@ public class Plant {
 
     @Column(name = "fertilization_and_fumigation")
     private String fertilizationAndFumigation;
+
+    @Column(name="min_temperature")
+    private Double minTemperature;
+
+    @Column(name="max_temperature")
+    private Double maxTemperature;
+
+    @Column(name = "min_humidity")
+    private Double minHumidity;
+
+    @Column(name="max_humidity")
+    private Double maxHumidity;
 }

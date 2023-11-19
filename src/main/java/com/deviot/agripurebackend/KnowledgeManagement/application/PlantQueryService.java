@@ -2,8 +2,10 @@ package com.deviot.agripurebackend.KnowledgeManagement.application;
 
 import com.deviot.agripurebackend.KnowledgeManagement.domain.model.aggregates.Plant;
 import com.deviot.agripurebackend.KnowledgeManagement.domain.model.queries.GetPlantByIdQuery;
+import com.deviot.agripurebackend.KnowledgeManagement.domain.model.queries.GetTemperatureAndHumidityRangesByPlantIdQuery;
 import com.deviot.agripurebackend.KnowledgeManagement.domain.services.IPlantQueryService;
 import com.deviot.agripurebackend.KnowledgeManagement.infrastructure.PlantRepository;
+import com.deviot.agripurebackend.KnowledgeManagement.interfaces.resources.RangesDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,20 @@ public class PlantQueryService implements IPlantQueryService {
         else{
             throw new RuntimeException("The plant with the given id doesn't exist");
         }
+    }
+
+    @Override
+    public RangesDTO handle(GetTemperatureAndHumidityRangesByPlantIdQuery query) {
+        Optional<Plant> plant=plantRepository.findById(query.plantId());
+        if(plant.isPresent()){
+            RangesDTO response= new RangesDTO();
+            response.setMinTemperature(plant.get().getMinTemperature());
+            response.setMaxTemperature(plant.get().getMaxTemperature());
+            response.setMaxHumidity(plant.get().getMaxHumidity());
+            response.setMinHumidity(plant.get().getMinHumidity());
+            return response;
+        }
+        return null;
     }
 
     @Override

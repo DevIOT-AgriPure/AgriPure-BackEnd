@@ -1,5 +1,6 @@
 package com.deviot.agripurebackend.KnowledgeManagement.domain.model.aggregates;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -40,6 +41,10 @@ public class Plant {
 
     @Column(name = "fertilization_and_fumigation")
     private String fertilizationAndFumigation;
+
+    @Column(name = "ph")
+    @JsonProperty("pH")
+    private Double pH;
 
     @Column(name="min_temperature")
     private Double minTemperature;

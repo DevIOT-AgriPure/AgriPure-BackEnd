@@ -4,6 +4,7 @@ import com.deviot.agripurebackend.KnowledgeManagement.application.PlantCommandSe
 import com.deviot.agripurebackend.KnowledgeManagement.application.PlantQueryService;
 import com.deviot.agripurebackend.KnowledgeManagement.domain.model.aggregates.Plant;
 import com.deviot.agripurebackend.KnowledgeManagement.domain.model.commands.CreatePlantCommand;
+import com.deviot.agripurebackend.KnowledgeManagement.domain.model.commands.GenerateSeedCommand;
 import com.deviot.agripurebackend.KnowledgeManagement.domain.model.queries.GetPlantByIdQuery;
 import com.deviot.agripurebackend.KnowledgeManagement.domain.model.queries.GetTemperatureAndHumidityRangesByPlantIdQuery;
 import com.deviot.agripurebackend.KnowledgeManagement.interfaces.resources.RangesDTO;
@@ -24,6 +25,14 @@ public class PlantController {
     public ResponseEntity<?> createPlant(@RequestBody CreatePlantCommand createPlantCommand){
         plantCommandService.handle(createPlantCommand);
         return ResponseEntity.ok("Plant created!!");
+    }
+
+    @CrossOrigin
+    @PostMapping("/generateSeed")
+    public ResponseEntity<?> generateSeed(){
+        GenerateSeedCommand generateSeedCommand= new GenerateSeedCommand();
+        String message= plantCommandService.handle(generateSeedCommand);
+        return ResponseEntity.ok(message);
     }
 
     @CrossOrigin

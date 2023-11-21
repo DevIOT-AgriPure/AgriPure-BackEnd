@@ -1,5 +1,7 @@
 package com.deviot.agripurebackend.notification.application.internal;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import com.deviot.agripurebackend.notification.domain.model.aggregates.Notification;
 import com.deviot.agripurebackend.notification.domain.model.commands.CreateNotificationCommand;
 import com.deviot.agripurebackend.notification.domain.model.commands.DeleteNotificationCommand;
@@ -16,13 +18,23 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class NotificationCommandService implements INotificationsCommandService {
     private final NotificationRepository notificationRepository;
+
+    private String getCurrentFormattedDate() {
+        // Obtener la fecha actual
+        Date currentDate = new Date();
+
+        // Formatear la fecha al formato deseado
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return dateFormat.format(currentDate);
+    }
     @Override
     public String handle(CreateNotificationCommand createNotificationCommand) {
+        String currentFormattedDate = getCurrentFormattedDate();
         Notification newNotification = Notification.builder()
                 .message(createNotificationCommand.message())
                 .imageUrl(createNotificationCommand.imageUrl())
                 .notificationType(createNotificationCommand.notificationType())
-                .date(createNotificationCommand.date())
+                .date(currentFormattedDate)
                 .toAccountId(createNotificationCommand.toAccountId())
                 .plantId(createNotificationCommand.plantId())
                 .fromAccountId(createNotificationCommand.fromAccountId())

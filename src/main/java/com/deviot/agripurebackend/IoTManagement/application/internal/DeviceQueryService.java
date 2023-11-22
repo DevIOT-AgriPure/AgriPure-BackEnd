@@ -1,20 +1,14 @@
 package com.deviot.agripurebackend.IoTManagement.application.internal;
 
 import com.deviot.agripurebackend.IoTManagement.domain.model.aggregate.Device;
-import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetDeviceByIdQuery;
+import com.deviot.agripurebackend.IoTManagement.domain.model.queries.*;
 
-import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetTemperaturesAndHumidityByCropIdQuery;
-
-import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetDevicesByFarmerIdQuery;
-
-import com.deviot.agripurebackend.IoTManagement.domain.model.queries.getTemperatureQuery;
 import com.deviot.agripurebackend.IoTManagement.domain.service.queryService.IDeviceQueryService;
 import com.deviot.agripurebackend.IoTManagement.interfaces.DTOs.TemperatureAndHumidity;
 import com.deviot.agripurebackend.IoTManagement.infrastructure.DeviceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -23,6 +17,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DeviceQueryService implements IDeviceQueryService {
     private final DeviceRepository deviceRepository;
+
+    @Override
+    public List<Device> handle(GetDevicesByCropIdQuery getDevicesByCropIdQuery) {
+        List<Device> devices=deviceRepository.findDevicesByCropId(getDevicesByCropIdQuery.cropId());
+        return devices;
+    }
 
     @Override
     public Device handle(getTemperatureQuery query) {

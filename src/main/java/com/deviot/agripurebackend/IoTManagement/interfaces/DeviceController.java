@@ -4,13 +4,9 @@ import com.deviot.agripurebackend.IoTManagement.application.internal.DeviceComma
 import com.deviot.agripurebackend.IoTManagement.application.internal.DeviceQueryService;
 import com.deviot.agripurebackend.IoTManagement.domain.model.aggregate.Device;
 import com.deviot.agripurebackend.IoTManagement.domain.model.commands.*;
-import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetDeviceByIdQuery;
+import com.deviot.agripurebackend.IoTManagement.domain.model.queries.*;
 
-import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetTemperaturesAndHumidityByCropIdQuery;
-import com.deviot.agripurebackend.IoTManagement.domain.model.queries.getTemperatureQuery;
 import com.deviot.agripurebackend.IoTManagement.interfaces.DTOs.TemperatureAndHumidity;
-
-import com.deviot.agripurebackend.IoTManagement.domain.model.queries.GetDevicesByFarmerIdQuery;
 
 import com.deviot.agripurebackend.IoTManagement.interfaces.dto.DeviceValuesDTO;
 
@@ -52,6 +48,13 @@ public class DeviceController {
         GetTemperaturesAndHumidityByCropIdQuery query=new GetTemperaturesAndHumidityByCropIdQuery(cropId);
         List<TemperatureAndHumidity> response=deviceQueryService.handle(query);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("device/cropId/{cropId}")
+    public ResponseEntity<List<Device>> GetDeviceByCropId(@PathVariable("cropId")Long cropId){
+        GetDevicesByCropIdQuery getDevicesByCropIdQuery =new GetDevicesByCropIdQuery(cropId);
+        List<Device> devices=deviceQueryService.handle(getDevicesByCropIdQuery);
+        return ResponseEntity.ok(devices);
     }
 
 

@@ -1,6 +1,6 @@
 package com.deviot.agripurebackend.crop.infrastructure;
 
-import com.deviot.agripurebackend.crop.domain.model.aggregates.Crop;
+import com.deviot.agripurebackend.crop.domain.model.entities.Crop;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

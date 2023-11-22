@@ -1,4 +1,4 @@
-package com.deviot.agripurebackend.account.config;
+package com.deviot.agripurebackend.account.application.internal.config;
 
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;

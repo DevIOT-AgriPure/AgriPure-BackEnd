@@ -1,4 +1,4 @@
-package com.deviot.agripurebackend.crop.domain.model.aggregates;
+package com.deviot.agripurebackend.crop.domain.model.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

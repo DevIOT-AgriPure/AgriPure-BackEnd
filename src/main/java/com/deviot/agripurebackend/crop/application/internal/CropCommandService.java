@@ -1,6 +1,6 @@
 package com.deviot.agripurebackend.crop.application.internal;
 
-import com.deviot.agripurebackend.crop.domain.model.aggregates.Crop;
+import com.deviot.agripurebackend.crop.domain.model.entities.Crop;
 import com.deviot.agripurebackend.crop.domain.model.commands.*;
 import com.deviot.agripurebackend.crop.domain.services.ICropCommandService;
 import com.deviot.agripurebackend.crop.infrastructure.CropRepository;

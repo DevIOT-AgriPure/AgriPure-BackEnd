@@ -1,9 +1,9 @@
-package com.deviot.agripurebackend.advisory.application.internal.message;
+package com.deviot.agripurebackend.ccm.application.internal.message;
 
-import com.deviot.agripurebackend.advisory.domain.Services.message.IMessageCommandService;
-import com.deviot.agripurebackend.advisory.domain.model.commands.chat.CreateMessageCommand;
-import com.deviot.agripurebackend.advisory.domain.model.entities.Message;
-import com.deviot.agripurebackend.advisory.infrastructure.MessageRepository;
+import com.deviot.agripurebackend.ccm.domain.services.message.IMessageCommandService;
+import com.deviot.agripurebackend.ccm.domain.model.commands.chat.CreateMessageCommand;
+import com.deviot.agripurebackend.ccm.domain.model.entities.Message;
+import com.deviot.agripurebackend.ccm.infrastructure.MessageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

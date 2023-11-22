@@ -1,6 +1,6 @@
-package com.deviot.agripurebackend.advisory.infrastructure;
+package com.deviot.agripurebackend.ccm.infrastructure;
 
-import com.deviot.agripurebackend.advisory.domain.model.entities.Message;
+import com.deviot.agripurebackend.ccm.domain.model.entities.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

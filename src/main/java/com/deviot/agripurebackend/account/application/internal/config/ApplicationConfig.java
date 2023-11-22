@@ -1,4 +1,4 @@
-package com.deviot.agripurebackend.account.config;
+package com.deviot.agripurebackend.account.application.internal.config;
 
 import com.deviot.agripurebackend.account.infrastructure.repositories.AccountRepository;
 import lombok.RequiredArgsConstructor;

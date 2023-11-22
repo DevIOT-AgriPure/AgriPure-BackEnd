@@ -7,7 +7,7 @@ import com.deviot.agripurebackend.account.domain.model.commands.LogInCommand;
 import com.deviot.agripurebackend.account.domain.model.enums.AccountRol;
 import com.deviot.agripurebackend.account.infrastructure.dtos.AuthResponse;
 import com.deviot.agripurebackend.account.infrastructure.repositories.AccountRepository;
-import com.deviot.agripurebackend.account.jwt.Service.JwtService;
+import com.deviot.agripurebackend.account.application.internal.jwt.Service.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

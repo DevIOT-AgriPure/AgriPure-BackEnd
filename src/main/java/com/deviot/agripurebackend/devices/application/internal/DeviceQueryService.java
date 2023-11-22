@@ -4,6 +4,7 @@ import com.deviot.agripurebackend.devices.domain.model.aggregate.Device;
 import com.deviot.agripurebackend.devices.domain.model.queries.GetDeviceByIdQuery;
 
 import com.deviot.agripurebackend.devices.domain.model.queries.GetTemperaturesAndHumidityByCropIdQuery;
+import com.deviot.agripurebackend.devices.domain.model.queries.*;
 
 import com.deviot.agripurebackend.devices.domain.model.queries.GetDevicesByFarmerIdQuery;
 
@@ -22,6 +23,12 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class DeviceQueryService implements IDeviceQueryService {
     private final DeviceRepository deviceRepository;
+
+    @Override
+    public List<Device> handle(GetDevicesByCropIdQuery getDevicesByCropIdQuery) {
+        List<Device> devices=deviceRepository.findDevicesByCropId(getDevicesByCropIdQuery.cropId());
+        return devices;
+    }
 
     @Override
     public Device handle(getTemperatureQuery query) {

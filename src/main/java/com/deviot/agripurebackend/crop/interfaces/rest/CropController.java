@@ -2,14 +2,12 @@ package com.deviot.agripurebackend.crop.interfaces.rest;
 
 import com.deviot.agripurebackend.crop.application.internal.CropCommandService;
 import com.deviot.agripurebackend.crop.application.internal.QueryService.CropQueryService;
-import com.deviot.agripurebackend.crop.domain.model.aggregates.Crop;
+import com.deviot.agripurebackend.crop.domain.model.entities.Crop;
 import com.deviot.agripurebackend.crop.domain.model.commands.CreateCropCommand;
 import com.deviot.agripurebackend.crop.domain.model.commands.DeleteCropCommand;
 import com.deviot.agripurebackend.crop.domain.model.commands.SetSpecialistToCropCommand;
 import com.deviot.agripurebackend.crop.domain.model.queries.GetCropByIdQuery;
 import com.deviot.agripurebackend.crop.domain.model.queries.GetCropsByFarmerIdQuery;
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

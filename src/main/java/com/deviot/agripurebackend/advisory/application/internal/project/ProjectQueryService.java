@@ -1,7 +1,7 @@
 package com.deviot.agripurebackend.advisory.application.internal.project;
 
 import com.deviot.agripurebackend.advisory.domain.Services.project.IProjectQueryService;
-import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
+import com.deviot.agripurebackend.advisory.domain.model.aggregates.Project;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByCropIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsByFarmerIdQuery;

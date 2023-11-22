@@ -1,4 +1,4 @@
-package com.deviot.agripurebackend.account.config;
+package com.deviot.agripurebackend.account.application.internal.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

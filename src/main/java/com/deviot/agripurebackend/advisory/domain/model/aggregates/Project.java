@@ -1,4 +1,4 @@
-package com.deviot.agripurebackend.advisory.domain.model.entities;
+package com.deviot.agripurebackend.advisory.domain.model.aggregates;
 
 import jakarta.persistence.*;
 import lombok.*;

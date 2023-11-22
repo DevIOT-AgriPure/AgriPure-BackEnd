@@ -1,6 +1,6 @@
-package com.deviot.agripurebackend.account.config;
+package com.deviot.agripurebackend.account.application.internal.config;
 
-import com.deviot.agripurebackend.account.jwt.JwtAuthenticationFilter;
+import com.deviot.agripurebackend.account.application.internal.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

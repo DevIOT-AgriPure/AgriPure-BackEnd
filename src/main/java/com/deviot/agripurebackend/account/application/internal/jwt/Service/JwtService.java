@@ -1,4 +1,4 @@
-package com.deviot.agripurebackend.account.jwt.Service;
+package com.deviot.agripurebackend.account.application.internal.jwt.Service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

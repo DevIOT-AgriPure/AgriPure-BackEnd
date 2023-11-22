@@ -6,7 +6,7 @@ import com.deviot.agripurebackend.advisory.domain.model.commands.project.AddDevi
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.CreateProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.DeleteProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.StartProjectCommand;
-import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
+import com.deviot.agripurebackend.advisory.domain.model.aggregates.Project;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByCropIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectByIdQuery;
 import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsByFarmerIdQuery;

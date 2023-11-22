@@ -1,6 +1,6 @@
 package com.deviot.agripurebackend.advisory.infrastructure;
 
-import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
+import com.deviot.agripurebackend.advisory.domain.model.aggregates.Project;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -5,7 +5,7 @@ import com.deviot.agripurebackend.advisory.domain.model.commands.project.AddDevi
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.CreateProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.DeleteProjectCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.StartProjectCommand;
-import com.deviot.agripurebackend.advisory.domain.model.entities.Project;
+import com.deviot.agripurebackend.advisory.domain.model.aggregates.Project;
 import com.deviot.agripurebackend.advisory.infrastructure.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

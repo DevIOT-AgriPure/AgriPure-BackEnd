@@ -1,10 +1,10 @@
-package com.deviot.agripurebackend.advisory.interfaces.rest;
+package com.deviot.agripurebackend.ccm.interfaces.rest;
 
-import com.deviot.agripurebackend.advisory.application.internal.message.MessageCommandService;
-import com.deviot.agripurebackend.advisory.application.internal.message.MessageQueryService;
-import com.deviot.agripurebackend.advisory.domain.model.commands.chat.CreateMessageCommand;
-import com.deviot.agripurebackend.advisory.domain.model.entities.Message;
-import com.deviot.agripurebackend.advisory.domain.model.queries.chat.GetMessageByContactIdQuery;
+import com.deviot.agripurebackend.ccm.application.internal.message.MessageCommandService;
+import com.deviot.agripurebackend.ccm.application.internal.message.MessageQueryService;
+import com.deviot.agripurebackend.ccm.domain.model.commands.chat.CreateMessageCommand;
+import com.deviot.agripurebackend.ccm.domain.model.entities.Message;
+import com.deviot.agripurebackend.ccm.domain.model.queries.chat.GetMessageByContactIdQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -11,6 +11,17 @@ import com.deviot.agripurebackend.advisory.application.internal.contact.ContactC
 import com.deviot.agripurebackend.advisory.application.internal.contact.ContactQueryService;
 import com.deviot.agripurebackend.advisory.application.internal.project.ProjectCommandService;
 import com.deviot.agripurebackend.advisory.application.internal.project.ProjectQueryService;
+import com.deviot.agripurebackend.advisory.domain.model.commands.contact.DeleteContactCommand;
+import com.deviot.agripurebackend.advisory.domain.model.commands.project.DeleteProjectCommand;
+import com.deviot.agripurebackend.advisory.domain.model.entities.Contact;
+import com.deviot.agripurebackend.advisory.domain.model.queries.contact.GetContactsByFarmerIdQuery;
+import com.deviot.agripurebackend.advisory.domain.model.queries.contact.GetContactsBySpecialistIdQuery;
+import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsByFarmerIdQuery;
+import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsBySpecialistIdQuery;
+import com.deviot.agripurebackend.advisory.application.internal.contact.ContactCommandService;
+import com.deviot.agripurebackend.advisory.application.internal.contact.ContactQueryService;
+import com.deviot.agripurebackend.advisory.application.internal.project.ProjectCommandService;
+import com.deviot.agripurebackend.advisory.application.internal.project.ProjectQueryService;
 import com.deviot.agripurebackend.advisory.domain.model.aggregates.Project;
 import com.deviot.agripurebackend.advisory.domain.model.commands.contact.DeleteContactCommand;
 import com.deviot.agripurebackend.advisory.domain.model.commands.project.DeleteProjectCommand;

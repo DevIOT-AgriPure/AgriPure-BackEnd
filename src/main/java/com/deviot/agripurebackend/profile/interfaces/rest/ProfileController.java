@@ -7,6 +7,18 @@ import com.deviot.agripurebackend.account.domain.model.enums.AccountRol;
 import com.deviot.agripurebackend.account.domain.model.queries.GetAccountByEmailQuery;
 import com.deviot.agripurebackend.account.domain.model.queries.GetEmailAndTypeByAccountIdQuery;
 import com.deviot.agripurebackend.account.domain.model.queries.GetSpecialistsQuery;
+import com.deviot.agripurebackend.advisory.application.internal.contact.ContactCommandService;
+import com.deviot.agripurebackend.advisory.application.internal.contact.ContactQueryService;
+import com.deviot.agripurebackend.advisory.application.internal.project.ProjectCommandService;
+import com.deviot.agripurebackend.advisory.application.internal.project.ProjectQueryService;
+import com.deviot.agripurebackend.advisory.domain.model.aggregates.Project;
+import com.deviot.agripurebackend.advisory.domain.model.commands.contact.DeleteContactCommand;
+import com.deviot.agripurebackend.advisory.domain.model.commands.project.DeleteProjectCommand;
+import com.deviot.agripurebackend.advisory.domain.model.entities.Contact;
+import com.deviot.agripurebackend.advisory.domain.model.queries.contact.GetContactsByFarmerIdQuery;
+import com.deviot.agripurebackend.advisory.domain.model.queries.contact.GetContactsBySpecialistIdQuery;
+import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsByFarmerIdQuery;
+import com.deviot.agripurebackend.advisory.domain.model.queries.proyect.GetProjectsBySpecialistIdQuery;
 import com.deviot.agripurebackend.profile.application.internal.ProfileCommandService;
 import com.deviot.agripurebackend.profile.application.internal.QueryService.ProfileQueryService;
 import com.deviot.agripurebackend.profile.application.internal.QueryService.SpecialistQueryService;
@@ -39,6 +51,10 @@ public class ProfileController {
     private final SpecialistQueryService specialistQueryService;
     private final SpecialistCommandService specialistCommandService;
     private final AccountCommandService accountCommandService;
+    private final ProjectCommandService projectCommandService;
+    private final ProjectQueryService projectQueryService;
+    private final ContactCommandService contactCommandService;
+    private final ContactQueryService contactQueryService;
     @CrossOrigin
     @PostMapping
     public ResponseEntity<?> createProfile(@RequestBody CreateProfileCommand createProfileCommand){
@@ -173,6 +189,49 @@ public class ProfileController {
 
         DeleteProfileCommand deleteProfileCommand=new DeleteProfileCommand(accountId);
         DeleteAccountCommand deleteAccountCommand=new DeleteAccountCommand(accountId);
+
+        if(!profile.getClass().toString().equals("SPECIALIST")){
+
+            GetContactsBySpecialistIdQuery getContactsBySpecialistIdQuery=new GetContactsBySpecialistIdQuery(accountId);
+            List<Contact> contacts=contactQueryService.handle(getContactsBySpecialistIdQuery);
+            if(contacts!=null){
+                for (Contact contact : contacts) {
+                    DeleteContactCommand deleteContactCommand=new DeleteContactCommand(contact.getId());
+                    contactCommandService.handle(deleteContactCommand);
+                }
+            }
+
+            GetProjectsByFarmerIdQuery getProjectsByFarmerIdQuery=new GetProjectsByFarmerIdQuery(accountId);
+            List<Project> projects=projectQueryService.handle(getProjectsByFarmerIdQuery);
+            if(projects!=null){
+                for (Project project : projects) {
+                    DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(project.getId());
+                    projectCommandService.handle(deleteProjectCommand);
+                }
+            }
+
+
+        }
+        if(!profile.getClass().toString().equals("FARMER")){
+            GetContactsByFarmerIdQuery getContactsByFarmerIdQuery=new GetContactsByFarmerIdQuery(accountId);
+            List<Contact> contacts=contactQueryService.handle(getContactsByFarmerIdQuery);
+            if(contacts!=null){
+                for (Contact contact : contacts) {
+                    DeleteContactCommand deleteContactCommand=new DeleteContactCommand(contact.getId());
+                    contactCommandService.handle(deleteContactCommand);
+                }
+            }
+
+            GetProjectsBySpecialistIdQuery getProjectsBySpecialistIdQuery=new GetProjectsBySpecialistIdQuery(accountId);
+            List<Project> projects=projectQueryService.handle(getProjectsBySpecialistIdQuery);
+            if(projects!=null){
+                for (Project project : projects) {
+                    DeleteProjectCommand deleteProjectCommand = new DeleteProjectCommand(project.getId());
+                    projectCommandService.handle(deleteProjectCommand);
+                }
+            }
+        }
+
         String profileMessage=this.profileCommandService.handle(deleteProfileCommand);
         String accountMessage=this.accountCommandService.handle(deleteAccountCommand);
         return ResponseEntity.ok(profileMessage+accountMessage);

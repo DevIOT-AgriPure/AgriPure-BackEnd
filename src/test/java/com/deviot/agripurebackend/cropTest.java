@@ -25,5 +25,10 @@ public class cropTest {
         CreateCropCommand createCropCommand=new CreateCropCommand(1L,1L);
         cropCommandService.handle(createCropCommand);
     }
+    @Test
+    public void testCreateCrop4(){
+        CreateCropCommand createCropCommand=new CreateCropCommand(1L,1L);
+        cropCommandService.handle(createCropCommand);
+    }
 
 }
